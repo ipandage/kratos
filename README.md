@@ -1,3 +1,5 @@
+![](http://dl.iteye.com/upload/picture/pic/133963/1b7808be-6d12-31ca-9015-c44a1be537a9.jpg)
+
 # kratos
 基于Java语言编写的轻量级分库分表(Sharding)中间件，丰富的Sharding算法支持(2类4种分片算法)，能够方便DBA实现库的极速扩容和降低数据迁移成本。Kratos站在巨人的肩膀上(SpringJdbc)，采用与应用集成架构，放弃通用性，只为换取更好的执行性能与降低分布式环境下外围系统的down机风险。<br>
 
