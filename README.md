@@ -15,3 +15,13 @@ Kratos的注意事项：http://gao-xianglong.iteye.com/blog/2239007<br>
 7、分库分表路由算法支持2类4种分片模式，库内分片/一库一片；<br>
 8、提供自动生成sequenceId的API支持；<br>
 9、提供自动生成配置文件的支持，降低配置出错率；<br>
+
+### Kratos的领域模型定位：
+![](http://dl.iteye.com/upload/picture/pic/133859/e114f4fc-3788-3e5d-9103-def32509b1c9.jpg)  
+
+### Kratos的3层架构：
+![](http://dl.iteye.com/upload/picture/pic/133889/274e2a9c-c0ce-3c25-a17a-f1f914ca4667.jpg)  
+
+### Kratos的应用总体架构：
+![](http://dl.iteye.com/upload/picture/pic/133881/a41cb049-d046-3293-af1b-27912c15a6ed.jpg)  
+
