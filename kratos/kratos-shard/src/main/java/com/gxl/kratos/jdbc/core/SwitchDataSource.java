@@ -25,7 +25,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.gxl.kratos.jdbc.datasource.config.DataSourceHolder;
 import com.gxl.kratos.jdbc.exception.ShardException;
-import com.gxl.kratos.jdbc.mysql.sqlparser.SqlParser;
+import com.gxl.kratos.jdbc.mysql.sql.parser.SqlParser;
 import com.gxl.kratos.jdbc.shard.DbRule;
 import com.gxl.kratos.jdbc.shard.GetKeyName;
 import com.gxl.kratos.jdbc.shard.TbRule;
