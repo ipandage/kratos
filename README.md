@@ -2,7 +2,7 @@
 ### kratos简介
 基于Java语言编写的轻量级分库分表(Sharding)中间件，丰富的Sharding算法支持(2类4种分片算法)，能够方便DBA实现库的极速扩容和降低数据迁移成本。Kratos站在巨人的肩膀上(SpringJdbc)，采用与应用集成架构，放弃通用性，只为换取更好的执行性能与降低分布式环境下外围系统的down机风险。<br>
 
-- [Kratos使用手册](https://github.com/gaoxianglong/kratos/wiki)<br>
+- [kratos使用手册](https://github.com/gaoxianglong/kratos/wiki)<br>
 
 ### kratos的优点：
 - 动态数据源的无缝切换；<br>
