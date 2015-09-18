@@ -38,6 +38,17 @@ public class Bean {
 	@XmlAttribute(name = "class")
 	private String class_;
 
+	@XmlAttribute(name = "destroy-method")
+	private String destroy_method;
+
+	public String getDestroy_method() {
+		return destroy_method;
+	}
+
+	public void setDestroy_method(String destroy_method) {
+		this.destroy_method = destroy_method;
+	}
+
 	public ConstructorArg getConstructor_arg() {
 		return constructor_arg;
 	}

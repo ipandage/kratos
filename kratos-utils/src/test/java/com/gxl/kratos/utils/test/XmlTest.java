@@ -17,7 +17,9 @@ package com.gxl.kratos.utils.test;
 
 import java.io.File;
 import org.junit.Test;
-import com.gxl.kratos.utils.xml.CreateXml;
+import com.gxl.kratos.utils.xml.CreateC3p0Xml;
+import com.gxl.kratos.utils.xml.CreateCoreXml;
+import com.gxl.kratos.utils.xml.CreateDruidXml;
 
 /**
  * 生成kratos的配置文件测试类
@@ -31,7 +33,7 @@ public class XmlTest {
 	 * @author gaoxianglong
 	 */
 	public @Test void testCreateCoreXml() {
-		CreateXml c_xml = new CreateXml();
+		CreateCoreXml c_xml = new CreateCoreXml();
 		/* 是否控制台输出生成的配置文件 */
 		c_xml.setIsShow(true);
 		/* 配置分库分片信息 */
@@ -42,17 +44,18 @@ public class XmlTest {
 		c_xml.setConsistent("false");
 		c_xml.setDbRuleArray("#userinfo_id|email_hash# % 1024 / 32");
 		c_xml.setTbRuleArray("#userinfo_id|email_hash# % 1024 % 32");
+		c_xml.setSqlPath("classpath:properties/sqlFile.properties");
 		/* 执行配置文件输出 */
-		System.out.println(c_xml.createCoreXml(new File("e:/kratos-context.xml")));
+		System.out.println(c_xml.createCoreXml(new File("e:/kratos-context.xml")) ? "create success" : "create fial");
 	}
 
 	/**
-	 * 生成数据源配置文件
+	 * 生成c3p0数据源配置文件
 	 * 
 	 * @author gaoxianglong
 	 */
-	public @Test void testCreateDadasourceXml() {
-		CreateXml c_xml = new CreateXml();
+	public @Test void testCreateC3p0Xml() {
+		CreateC3p0Xml c_xml = new CreateC3p0Xml();
 		/* 是否控制台输出生成的配置文件 */
 		c_xml.setIsShow(true);
 		/* 数据源索引起始 */
@@ -60,7 +63,7 @@ public class XmlTest {
 		/* 配置分库分片信息 */
 		c_xml.setDbSize("16");
 		/* 配置数据源信息 */
-		c_xml.setJdbcUrl("jdbc:mysql://114.215.110.169:3306/um");
+		c_xml.setJdbcUrl("jdbc:mysql://192.168.1.1:3306/db");
 		c_xml.setUser("${name}");
 		c_xml.setPassword("${password}");
 		c_xml.setDriverClass("${driverClass}");
@@ -70,21 +73,22 @@ public class XmlTest {
 		c_xml.setMaxStatements("${maxStatements}");
 		c_xml.setMaxIdleTime("${maxIdleTime}");
 		/* 执行配置文件输出 */
-		System.out.println(c_xml.createDatasourceXml(new File("e:/dataSource-context.xml")));
+		System.out.println(
+				c_xml.createDatasourceXml(new File("e:/dataSource-context.xml")) ? "create success" : "create fial");
 	}
 
 	/**
-	 * 生成master/slave数据源配置文件
+	 * 生成c3p0的master/slave数据源配置文件
 	 * 
 	 * @author gaoxianglong
 	 */
-	public @Test void testCreateMSXml() {
-		CreateXml c_xml = new CreateXml();
+	public @Test void testCreateC3p0MSXml() {
+		CreateC3p0Xml c_xml = new CreateC3p0Xml();
 		c_xml.setIsShow(true);
 		/* 生成master数据源信息 */
 		c_xml.setDataSourceIndex(1);
-		c_xml.setDbSize("32");
-		c_xml.setJdbcUrl("jdbc:mysql://114.215.110.169:3306/um");
+		c_xml.setDbSize("16");
+		c_xml.setJdbcUrl("jdbc:mysql://192.168.1.1:3306/db");
 		c_xml.setUser("${name}");
 		c_xml.setPassword("${password}");
 		c_xml.setDriverClass("${driverClass}");
@@ -93,19 +97,92 @@ public class XmlTest {
 		c_xml.setMaxPoolSize("${maxPoolSize}");
 		c_xml.setMaxStatements("${maxStatements}");
 		c_xml.setMaxIdleTime("${maxIdleTime}");
-		System.out.println(c_xml.createDatasourceXml(new File("e:/masterDataSource-context.xml")));
+		System.out.println(c_xml.createDatasourceXml(new File("e:/masterDataSource-context.xml")) ? "create success"
+				: "create fial");
 		/* 生成slave数据源信息 */
-		c_xml.setDataSourceIndex(33);
-		c_xml.setDbSize("32");
-		c_xml.setJdbcUrl("jdbc:mysql://115.215.110.180:3306/um");
+		c_xml.setDataSourceIndex(17);
+		c_xml.setDbSize("16");
+		c_xml.setJdbcUrl("jdbc:mysql://192.168.1.2:3307/db");
 		c_xml.setUser("${name}");
 		c_xml.setPassword("${password}");
-		c_xml.setDriverClass("${driverClass}");
-		c_xml.setInitialPoolSize("${initialPoolSize}");
-		c_xml.setMinPoolSize("${minPoolSize}");
-		c_xml.setMaxPoolSize("${maxPoolSize}");
-		c_xml.setMaxStatements("${maxStatements}");
-		c_xml.setMaxIdleTime("${maxIdleTime}");
-		System.out.println(c_xml.createDatasourceXml(new File("e:/slaveDataSource-context.xml")));
+		System.out.println(c_xml.createDatasourceXml(new File("e:/slaveDataSource-context.xml")) ? "create success"
+				: "create fial");
+	}
+
+	/**
+	 * 生成druid数据源配置文件
+	 * 
+	 * @author gaoxianglong
+	 */
+	public @Test void testCreateDruidXml() {
+		CreateDruidXml c_xml = new CreateDruidXml();
+		/* 是否控制台输出生成的配置文件 */
+		c_xml.setIsShow(true);
+		/* 数据源索引起始 */
+		c_xml.setDataSourceIndex(1);
+		/* 配置分库分片信息 */
+		c_xml.setDbSize("16");
+		/* 生成数据源信息 */
+		c_xml.setUsername("${username}");
+		c_xml.setPassword("${password}");
+		c_xml.setUrl("jdbc:mysql://192.168.1.1:3306/db");
+		c_xml.setInitialSize("${initialSize}");
+		c_xml.setMinIdle("${minIdle}");
+		c_xml.setMaxActive("${maxActive}");
+		c_xml.setPoolPreparedStatements("${poolPreparedStatements}");
+		c_xml.setMaxOpenPreparedStatements("${maxOpenPreparedStatements}");
+		c_xml.setTestOnBorrow("${testOnBorrow}");
+		c_xml.setTestOnReturn("${testOnReturn}");
+		c_xml.setTestWhileIdle("${testWhileIdle}");
+		c_xml.setFilters("${filters}");
+		c_xml.setConnectionProperties("${connectionProperties}");
+		c_xml.setUseGlobalDataSourceStat("${useGlobalDataSourceStat}");
+		c_xml.setTimeBetweenLogStatsMillis("${timeBetweenLogStatsMillis}");
+		/* 执行配置文件输出 */
+		System.out.println(
+				c_xml.createDatasourceXml(new File("e:/dataSource-context.xml")) ? "create success" : "create fial");
+	}
+
+	/**
+	 * 生成druid数据源配置文件
+	 * 
+	 * @author gaoxianglong
+	 */
+	public @Test void testCreateDruidMSXml() {
+		CreateDruidXml c_xml = new CreateDruidXml();
+		/* 是否控制台输出生成的配置文件 */
+		c_xml.setIsShow(true);
+		/* 数据源索引起始 */
+		c_xml.setDataSourceIndex(1);
+		/* 配置分库分片信息 */
+		c_xml.setDbSize("16");
+		/* 生成master数据源信息 */
+		c_xml.setUsername("${username}");
+		c_xml.setPassword("${password}");
+		c_xml.setUrl("jdbc:mysql://192.168.1.1:3306/db");
+		c_xml.setInitialSize("${initialSize}");
+		c_xml.setMinIdle("${minIdle}");
+		c_xml.setMaxActive("${maxActive}");
+		c_xml.setPoolPreparedStatements("${poolPreparedStatements}");
+		c_xml.setMaxOpenPreparedStatements("${maxOpenPreparedStatements}");
+		c_xml.setTestOnBorrow("${testOnBorrow}");
+		c_xml.setTestOnReturn("${testOnReturn}");
+		c_xml.setTestWhileIdle("${testWhileIdle}");
+		c_xml.setFilters("${filters}");
+		c_xml.setConnectionProperties("${connectionProperties}");
+		c_xml.setUseGlobalDataSourceStat("${useGlobalDataSourceStat}");
+		c_xml.setTimeBetweenLogStatsMillis("${timeBetweenLogStatsMillis}");
+		/* 执行配置文件输出 */
+		System.out.println(c_xml.createDatasourceXml(new File("e:/masterDataSource-context.xml")) ? "create success"
+				: "create fial");
+		/* 生成slave数据源信息 */
+		c_xml.setDataSourceIndex(17);
+		c_xml.setDbSize("16");
+		c_xml.setUsername("${username}");
+		c_xml.setPassword("${password}");
+		c_xml.setUrl("jdbc:mysql://192.168.1.2:3307/db");
+		/* 执行配置文件输出 */
+		System.out.println(c_xml.createDatasourceXml(new File("e:/slaveDataSource-context.xml")) ? "create success"
+				: "create fial");
 	}
 }
