@@ -13,23 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.gxl.kratos.utils.xml;
+package com.gxl.kratos.test.jdbc;
 
-import java.io.File;
-import com.gxl.kratos.utils.exception.UtilsException;
+import java.util.List;
 
 /**
- * 生成数据源配置文件
+ * 用户信息Dao接口
  * 
  * @author gaoxianglong
  */
-public interface CreateDSXml {
-	/**
-	 * 生成kratos的数据源信息配置文件
-	 * 
-	 * @author gaoxianglong
-	 * 
-	 * @return boolean 生成结果
-	 */
-	public boolean createDatasourceXml(File savePath);
+public interface UserDao {
+	public void insertUser(User user) throws Exception;
+
+	public List<User> queryUserbyId(long uid) throws Exception;
 }

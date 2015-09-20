@@ -13,19 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.gxl.kratos.jdbc.test;
+package com.gxl.kratos.test.jdbc;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Component;
 
 /**
- * 用户信息Dao接口
+ * User实体映射类
  * 
  * @author gaoxianglong
  */
-public interface UserDao {
-	public void addUser(long uid);
-
-	public User getUserbyId(long uid);
-
-	public void addEmailIndex(EmailIndex emailIndex);
-	
-	public EmailIndex getEmailIndex(EmailIndex emailIndex);
+@Component
+public class UserMapper implements RowMapper<User> {
+	@Override
+	public User mapRow(ResultSet rs, int rowNum) throws SQLException {
+		User user = new User();
+		user.setUsername(rs.getString("username"));
+		return user;
+	}
 }

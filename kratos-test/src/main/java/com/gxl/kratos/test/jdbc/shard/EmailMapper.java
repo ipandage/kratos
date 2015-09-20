@@ -13,27 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.gxl.kratos.jdbc.test;
+package com.gxl.kratos.test.jdbc.shard;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
 /**
- * EmailIndex实体类映射
+ * Email实体映射类
  * 
  * @author gaoxianglong
  */
 @Component
-public class EmailIndexMapper implements RowMapper<EmailIndex> {
+public class EmailMapper implements RowMapper<Email> {
 	@Override
-	public EmailIndex mapRow(ResultSet rs, int rowNum) throws SQLException {
-		EmailIndex email = new EmailIndex();
+	public Email mapRow(ResultSet rs, int rowNum) throws SQLException {
+		Email email = new Email();
 		email.setEmail(rs.getString("email"));
 		email.setEmail_hash(rs.getLong("email_hash"));
-		email.setUserinfo_id(rs.getLong("userinfo_id"));
+		email.setUserinfo_Id(rs.getLong("userinfo_Id"));
 		return email;
 	}
 }

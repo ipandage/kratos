@@ -8,17 +8,8 @@
 		</layout>
 	</appender>
 
-	<!-- 按天生成日志文件 -->
-	<appender name="activexAppender" class="org.apache.log4j.DailyRollingFileAppender">
-		<param name="File" value="/usr/logs/gppz.log" />
-		<param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />
-		<layout class="org.apache.log4j.PatternLayout">
-			<param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss SSS\} %-5p] %c - %m%n" />
-		</layout>
-	</appender>
-
 	<!-- Application Loggers -->
-	<logger name="com.johngao.gppz">
+	<logger name="com.gxl.kratos">
 		<level value="info" />
 	</logger>
 
@@ -35,10 +26,6 @@
 		<level value="info" />
 	</logger>
 
-	<logger name="org.springframework.web">
-		<level value="info" />
-	</logger>
-
 	<!-- 指定logger的设置，additivity指示是否遵循缺省的继承机制 -->
 	<logger name="com.runway.bssp.activeXdemo" additivity="false">
 		<priority value="info" />
@@ -49,6 +36,5 @@
 	<root>
 		<priority value="info" />
 		<appender-ref ref="console" />
-		<appender-ref ref="activexAppender" />
 	</root>
 </log4j:configuration>

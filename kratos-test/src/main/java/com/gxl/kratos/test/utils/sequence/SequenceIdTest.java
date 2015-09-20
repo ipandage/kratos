@@ -13,15 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.gxl.kratos.utils.test;
+package com.gxl.kratos.test.utils.sequence;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
+import org.junit.BeforeClass;
 import org.junit.Test;
-
 import com.gxl.kratos.utils.sequence.DbConnectionManager;
 import com.gxl.kratos.utils.sequence.SequenceIDManger;
 
@@ -31,8 +28,21 @@ import com.gxl.kratos.utils.sequence.SequenceIDManger;
  * @author gaoxianglong
  */
 public class SequenceIdTest {
+	final static String NAME = "root";
+	final static String PWD = "123456";
+	final static String URL = "jdbc:mysql://ip:3306/id";
+	final static String DRIVER = "com.mysql.jdbc.Driver";
 	static boolean c_result1 = false;
 	static boolean c_result2 = false;
+
+	/**
+	 * 初始化数据源信息
+	 * 
+	 * @author gaoxianglong
+	 */
+	public @BeforeClass static void init() {
+		DbConnectionManager.init(NAME, PWD, URL, DRIVER);
+	}
 
 	/**
 	 * 获取SequenceId
@@ -40,8 +50,6 @@ public class SequenceIdTest {
 	 * @author gaoxianglong
 	 */
 	public @Test void getSequenceId() {
-		/* 初始化数据源信息 */
-		DbConnectionManager.init("root", "88888888", "jdbc:mysql://114.215.110.169:3306/test", "com.mysql.jdbc.Driver");
 		System.out.println(SequenceIDManger.getSequenceId(1, 1, 5000));
 	}
 
@@ -51,8 +59,6 @@ public class SequenceIdTest {
 	 * @author gaoxianglong
 	 */
 	public @Test void getSequenceId2() {
-		/* 初始化数据源信息 */
-		DbConnectionManager.init("root", "88888888", "jdbc:mysql://114.215.110.169:3306/test", "com.mysql.jdbc.Driver");
 		for (int i = 0; i < 1000; i++) {
 			System.out.println(SequenceIDManger.getSequenceId(1, 1, 5000));
 		}
@@ -64,8 +70,6 @@ public class SequenceIdTest {
 	 * @author gaoxianglong
 	 */
 	public @Test void getSequenceId3() {
-		/* 初始化数据源信息 */
-		DbConnectionManager.init("root", "88888888", "jdbc:mysql://114.215.110.169:3306/test", "com.mysql.jdbc.Driver");
 		final List<Long> id1 = new ArrayList<Long>();
 		final List<Long> id2 = new ArrayList<Long>();
 		final int size = 10000;

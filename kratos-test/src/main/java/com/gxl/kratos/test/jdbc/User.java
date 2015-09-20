@@ -13,42 +13,33 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.gxl.kratos.jdbc.test;
+package com.gxl.kratos.test.jdbc;
 
 import org.springframework.stereotype.Component;
 
 /**
- * 对应数据库表[email_index]
+ * 对应数据库表[userinfo]
  *
  * @author JohnGao
  */
 @Component
-public class EmailIndex {
-	private long userinfo_id;
-	private String email;
-	private long email_hash;
+public class User {
+	private long userinfo_Id;
+	private String username;
 
-	public long getUserinfo_id() {
-		return userinfo_id;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUserinfo_id(long userinfo_id) {
-		this.userinfo_id = userinfo_id;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
-	public String getEmail() {
-		return email;
+	public long getUserinfo_Id() {
+		return userinfo_Id;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public long getEmail_hash() {
-		return email_hash;
-	}
-
-	public void setEmail_hash(long email_hash) {
-		this.email_hash = email_hash;
+	public void setUserinfo_Id(long userinfo_Id) {
+		this.userinfo_Id = userinfo_Id;
 	}
 }

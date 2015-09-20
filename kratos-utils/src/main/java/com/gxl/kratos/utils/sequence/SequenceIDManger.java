@@ -21,6 +21,9 @@ package com.gxl.kratos.utils.sequence;
  * @author gaoxianglong
  */
 public class SequenceIDManger {
+	private SequenceIDManger() {
+	}
+
 	/**
 	 * 获取sequenceID
 	 * 

@@ -24,9 +24,6 @@ import java.sql.Statement;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-
-import javax.annotation.Resource;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
@@ -49,8 +46,6 @@ import org.springframework.jdbc.core.StatementCallback;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.jdbc.support.nativejdbc.NativeJdbcExtractor;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
-
-import com.gxl.kratos.jdbc.datasource.config.DataSourceHolder;
 
 /**
  * kratos的 JdbcTemplate，扩展自Spring JdbcTemplate

@@ -31,6 +31,9 @@ public class DbConnectionManager {
 	private static String jdbcUrl;
 	private static String driverClass;
 
+	private DbConnectionManager() {
+	}
+
 	/**
 	 * 初始化数据源信息
 	 * 

@@ -18,17 +18,16 @@
 		<context:include-filter type="annotation"
 			expression="org.aspectj.lang.annotation.Aspect" />
 	</context:component-scan>
-	<!-- 片名连续的库内分片配置 -->
+	<!-- 片名连续的一库一片配置 -->
 	<bean id="kJdbcTemplate" class="com.gxl.kratos.jdbc.core.KratosJdbcTemplate">
 		<constructor-arg name="isShard" value="true" />
 		<property name="dataSource" ref="kDataSourceGroup" />
 		<property name="wr_weight" value="r0w0" />
 		<!-- 分片模式,false为库内分片模式,true为一库一表分片模式 -->
-		<property name="shardMode" value="false" />
+		<property name="shardMode" value="true" />
 		<!-- 片名是否连续,true为片名连续,false为非片名连续 -->
 		<property name="consistent" value="true" />
-		<property name="dbRuleArray" value="#userinfo_id|email_hash# % 4 / 2" />
-		<property name="tbRuleArray" value="#userinfo_id|email_hash# % 4 % 2" />
+		<property name="dbRuleArray" value="#userinfo_id|email_hash# % 2" />
 	</bean>
 	<bean id="kDataSourceGroup"
 		class="com.gxl.kratos.jdbc.datasource.config.KratosDatasourceGroup">
