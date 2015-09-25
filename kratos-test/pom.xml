@@ -16,6 +16,9 @@
 	<properties>
 		<kratos-version>1.3.2</kratos-version>
 		<junit-version>4.7</junit-version>
+		<c3p0-version>0.9.1</c3p0-version>
+		<druid-version>1.0.15</druid-version>
+		<mysql.version>5.1.29</mysql.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<dependencies>
@@ -28,6 +31,24 @@
 			<groupId>com.gxl</groupId>
 			<artifactId>kratos-utils</artifactId>
 			<version>${kratos-version}</version>
+		</dependency>
+		<!-- C3p0 -->
+		<dependency>
+			<groupId>c3p0</groupId>
+			<artifactId>c3p0</artifactId>
+			<version>${c3p0-version}</version>
+		</dependency>
+		<!-- Druid -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+			<version>${druid-version}</version>
+		</dependency>
+		<!-- Mysql Driver -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>${mysql.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
