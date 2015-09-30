@@ -36,7 +36,7 @@ public interface SqlParser {
 	public String getTbName(String sql);
 
 	/**
-	 * 解析出Sql(SELECT、INSERT、UPDATE、DELETE)语句中的分库分表条件
+	 * 解析出Sql(SELECT、INSERT、UPDATE、DELETE)语句中的路由条件
 	 *
 	 * @author gaoxianglong
 	 *

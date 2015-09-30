@@ -159,12 +159,13 @@ public class SwitchDataSource {
 	 * @return List<Object> 重写后的委托对象的上下文信息
 	 */
 	protected List<Object> manyTbshard(String sql, Object[] params, boolean operation) {
-		/* 获取配置文件中的分库分表条件 */
+		/* 获取配置文件中的分库条件 */
 		String dbRuleArray = kJdbcTemplate.getDbRuleArray().toLowerCase().replaceAll("\\s", "");
+		/* 获取配置文件中的分表条件 */
 		String tbRuleArray = kJdbcTemplate.getTbRuleArray().toLowerCase().replaceAll("\\s", "");
 		/* 获取配置文件中分库分表的关键字 */
 		List<String> keyNames = GetKeyName.getName(false, dbRuleArray, tbRuleArray);
-		/* 解析分库分表条件 */
+		/* 解析路由条件 */
 		long key = sqlParser.getKey(sql, keyNames);
 		/* 获取数据库索引 */
 		int dbIndex = dbRule.getIndex(key, dbRuleArray);
@@ -211,7 +212,7 @@ public class SwitchDataSource {
 		String dbRuleArray = kJdbcTemplate.getDbRuleArray().toLowerCase().replaceAll("\\s", "");
 		/* 获取配置文件中分库分表的关键字 */
 		List<String> keyNames = GetKeyName.getName(true, dbRuleArray, null);
-		/* 解析分库分表条件 */
+		/* 解析路由条件 */
 		long key = sqlParser.getKey(sql, keyNames);
 		/* 获取数据库索引 */
 		int dbIndex = dbRule.getIndex(key, dbRuleArray);

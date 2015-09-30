@@ -10,17 +10,13 @@
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
+ * See the License for the specific language governing permissions AND
  * limitations under the License.
  */
 package com.gxl.kratos.jdbc.mysql.sql.parser;
 
 import java.util.List;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-import com.gxl.kratos.jdbc.core.KratosJdbcTemplate;
 import com.gxl.kratos.jdbc.exception.ShardException;
 import com.gxl.kratos.jdbc.exception.SqlParserException;
 
@@ -29,34 +25,34 @@ import com.gxl.kratos.jdbc.exception.SqlParserException;
  * 
  * *************************SELECT*****************************
  * 
- * 1、select * from tab where field1 = ?;
+ * 1、SELECT * FROM tab WHERE param1 = ?;
  * 
- * 2、select * from tab where field1 = ? and|or ...;
+ * 2、SELECT * FROM tab WHERE param1 = ? AND|OR ...;
  * 
- * 3、select field2... from tab where field1 = ? and|or...;
+ * 3、SELECT param2... FROM tab WHERE param1 = ? AND|OR...;
  * 
  * ************************************************************
  * *************************INSERT*****************************
  * 
- * 1、insert into tab(field1) values(?);
+ * 1、INSERT INTO tab(param1) VALUES(?);
  * 
- * 2、insert into tab(field1,field2...) values(?,?...);
+ * 2、INSERT INTO tab(param1,param2...) VALUES(?,?...);
  * 
  * ************************************************************
  * 
  * **************************DELETE****************************
  * 
- * 1、delete from tab where field1 = ?;
+ * 1、DELETE FROM tab WHERE param1 = ?;
  * 
- * 2、delete from tab where field1 = ? and|or ...;
+ * 2、DELETE FROM tab WHERE param1 = ? AND|OR ...;
  * 
  * ************************************************************
  * 
  * **************************UPDATE****************************
  * 
- * 1、update tab set field2 = ? where field1 = ?;
+ * 1、UPDATE tab SET param2 = ? WHERE param1 = ?;
  * 
- * 2、update tab set field2 = ?,... where field1 = ? and|or ...;
+ * 2、UPDATE tab SET param2 = ?,... WHERE param1 = ? AND|OR ...;
  * 
  * ************************************************************
  * 
@@ -82,14 +78,15 @@ public class KratosSqlParser implements SqlParser {
 	 * 
 	 * @return String 截取后的字符串信息
 	 */
-	public String substring(String str, String begin, String end) {
-		String newStr = null;
+	private String substring(String str, String begin, String end) {
 		try {
-			newStr = str.substring((str.indexOf(begin) + begin.length()), str.indexOf(end)).trim();
+			int beginIndex = str.indexOf(begin) + begin.length();
+			int endIndex = str.indexOf(end);
+			str = str.substring(beginIndex, endIndex).trim();
 		} catch (Exception e) {
 			throw new SqlParserException("kratos无法对当前Sql语句进行解析,Sql-->" + str);
 		}
-		return newStr;
+		return str;
 	}
 
 	@Override
@@ -125,7 +122,7 @@ public class KratosSqlParser implements SqlParser {
 		if (operationType.equals(Token.INSERT)) {
 			/* 解析所有的数据库参数字段 */
 			String keys = substring(sql, Token.LPAREN, Token.RPAREN);
-			/* 检测是否包含多字段参数,比如intset into tab(field1,field2) value(...) */
+			/* 检测是否包含多字段参数,比如intset INTO tab(param1,param2) value(...) */
 			if (keys.indexOf(Token.COMMA) != -1) {
 				/* 检测第一个字段是否是分库分表字段 */
 				if (rules.contains(keys.split(Token.COMMA)[0])) {
@@ -141,7 +138,7 @@ public class KratosSqlParser implements SqlParser {
 					throw new ShardException("kratos无法找到分库分表条件,Sql-->" + sql);
 				}
 			} else {
-				/* 单字段参数,比如intset into tab(field1) value(...) */
+				/* 单字段参数,比如intset INTO tab(param1) value(...) */
 				/* 检测字段是否是分库分表条件 */
 				if (rules.contains(keys)) {
 					try {
@@ -156,9 +153,12 @@ public class KratosSqlParser implements SqlParser {
 					throw new ShardException("kratos无法找到分库分表条件,Sql-->" + sql);
 				}
 			}
-		} else {
-			/* 解析除了INSERT之外的Sql(SELECT、UPDATE、DELETE)语句 */
-			String keys = substring(sql, Token.WHERE, Token.EQ);
+		}
+		/* 解析除了INSERT之外的Sql(SELECT、UPDATE、DELETE)语句 */
+		else if (operationType.equals(Token.SELECT) || operationType.equals(Token.UPDATE)
+				|| operationType.equals(Token.DELETE)) {
+			String keys = substring(operationType.equals(Token.UPDATE) ? Token.WHERE + sql.split(Token.WHERE)[1] : sql,
+					Token.WHERE, Token.EQ);
 			/* 检测第一个字段是否是分库分表字段 */
 			if (rules.contains(keys)) {
 				try {
@@ -172,6 +172,8 @@ public class KratosSqlParser implements SqlParser {
 			} else {
 				throw new ShardException("kratos无法找到分库分表条件,Sql-->" + sql);
 			}
+		} else {
+			throw new SqlParserException("kratos无法对当前Sql语句进行解析,Sql-->" + sql);
 		}
 		return key;
 	}
