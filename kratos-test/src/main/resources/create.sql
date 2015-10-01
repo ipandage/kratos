@@ -1,6 +1,6 @@
 #sequenceid的sql
 CREATE TABLE kratos_sequenceid(
-	k_id INT NOT NULL COMMENT '主键',
+	k_id INT NOT NULL AUTO_INCREMENT COMMENT '主键',
 	k_type INT NOT NULL COMMENT '类型',
 	k_useData BIGINT NOT NULL COMMENT '申请占位数量',
 	PRIMARY KEY (k_id)
