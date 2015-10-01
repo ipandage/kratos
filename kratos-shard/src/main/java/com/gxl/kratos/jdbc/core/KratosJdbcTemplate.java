@@ -111,6 +111,9 @@ public class KratosJdbcTemplate extends JdbcTemplate {
 	}
 
 	public String getDbRuleArray() {
+		if (null != dbRuleArray) {
+			dbRuleArray = dbRuleArray.toLowerCase().replaceAll("\\s", "");
+		}
 		return dbRuleArray;
 	}
 
@@ -119,6 +122,9 @@ public class KratosJdbcTemplate extends JdbcTemplate {
 	}
 
 	public String getTbRuleArray() {
+		if (null != tbRuleArray) {
+			tbRuleArray = tbRuleArray.toLowerCase().replaceAll("\\s", "");
+		}
 		return tbRuleArray;
 	}
 

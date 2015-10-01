@@ -53,7 +53,7 @@ public class CRUDTest {
 	private Email email;
 	final static String NAME = "root";
 	final static String PWD = "88888888";
-	final static String URL = "jdbc:mysql://ip:3306/id";
+	final static String URL = "jdbc:mysql://ip:3306/um_id";
 	final static String DRIVER = "com.mysql.jdbc.Driver";
 
 	/**

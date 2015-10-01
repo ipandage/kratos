@@ -29,7 +29,7 @@ public class TbRule extends ShardResolverImpl {
 	@Override
 	public int getIndex(long key, String ruleArray) {
 		/*
-		 * 覆盖分库分表规则的具体值,比如"#userinfo_id# % tbSize % dbSize",覆盖后为
+		 * 覆盖分库分表规则的具体值,比如"#userinfo_id|email_hash# % tbSize % dbSize",覆盖后为
 		 * "#1000# % tbSize % dbSize"
 		 */
 		String cover = ruleArray.replace(ruleArray.split("\\#")[1], String.valueOf(key));

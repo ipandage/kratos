@@ -15,19 +15,12 @@
  */
 package com.gxl.kratos.jdbc.shard;
 
-import com.gxl.kratos.jdbc.exception.ShardException;
-
 /**
  * 分库分表解析接口实现
  * 
  * @author gaoxianglong
  */
 public abstract class ShardResolverImpl implements ShardResolver {
-	@Override
-	public int getIndex(long key, String ruleArray) {
-		return 0;
-	}
-
 	/**
 	 * 解析库内分片模式下配置文件中的分库规则
 	 * 

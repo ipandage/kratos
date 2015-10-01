@@ -46,6 +46,8 @@ public abstract class GetKeyName {
 	 */
 	public static List<String> getName(boolean shardMode, String dbRuleArray, String tbRuleArray) {
 		List<String> keyNames = null;
+		if (null == dbRuleArray)
+			return keyNames;
 		/* 验证分片模式 */
 		if (shardMode) {
 			if (validationOneTbRule(dbRuleArray)) {
@@ -55,6 +57,8 @@ public abstract class GetKeyName {
 				throw new ShardException("分库分表规则配置信息有误");
 			}
 		} else {
+			if (null == tbRuleArray)
+				return keyNames;
 			if (validationManyTbRule(dbRuleArray, tbRuleArray)) {
 				String dbKeyName = dbRuleArray.split("\\#")[1];
 				String tbKeyName = tbRuleArray.split("\\#")[1];

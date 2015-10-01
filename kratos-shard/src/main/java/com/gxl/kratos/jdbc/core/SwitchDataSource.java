@@ -160,9 +160,9 @@ public class SwitchDataSource {
 	 */
 	protected List<Object> manyTbshard(String sql, Object[] params, boolean operation) {
 		/* 获取配置文件中的分库条件 */
-		String dbRuleArray = kJdbcTemplate.getDbRuleArray().toLowerCase().replaceAll("\\s", "");
+		String dbRuleArray = kJdbcTemplate.getDbRuleArray();
 		/* 获取配置文件中的分表条件 */
-		String tbRuleArray = kJdbcTemplate.getTbRuleArray().toLowerCase().replaceAll("\\s", "");
+		String tbRuleArray = kJdbcTemplate.getTbRuleArray();
 		/* 获取配置文件中分库分表的关键字 */
 		List<String> keyNames = GetKeyName.getName(false, dbRuleArray, tbRuleArray);
 		/* 解析路由条件 */
@@ -209,7 +209,7 @@ public class SwitchDataSource {
 	 */
 	protected List<Object> oneTbshard(String sql, Object[] params, boolean operation) {
 		/* 获取配置文件中的分库分表条件 */
-		String dbRuleArray = kJdbcTemplate.getDbRuleArray().toLowerCase().replaceAll("\\s", "");
+		String dbRuleArray = kJdbcTemplate.getDbRuleArray();
 		/* 获取配置文件中分库分表的关键字 */
 		List<String> keyNames = GetKeyName.getName(true, dbRuleArray, null);
 		/* 解析路由条件 */
