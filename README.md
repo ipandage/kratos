@@ -5,7 +5,7 @@
 - [使用手册](https://github.com/gaoxianglong/kratos/wiki)<br>
 - [常见问题](https://github.com/gaoxianglong/kratos/wiki/常见问题)<br>
 
-## kratos的优点
+## kratos的优点 [![Hex.pm](https://img.shields.io/hexpm/l/plug.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
 - 动态数据源的无缝切换；<br>
 - master/slave一主一从读写分离；<br>
 - 单线程读重试(取决于的数据库连接池是否支持，推荐使用淘宝Druid)；<br>
