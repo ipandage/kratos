@@ -1,7 +1,6 @@
 ![](http://dl.iteye.com/upload/picture/pic/133973/d30fc066-9cb2-369e-bcae-5a729733c683.jpg)
 ## kratos简介 [![Build Status](https://api.travis-ci.org/biezhi/blade.svg?branch=master)]()  [![Hex.pm](https://img.shields.io/hexpm/l/plug.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
 
-[![Join the chat at https://gitter.im/gaoxianglong/kratos](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/gaoxianglong/kratos?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 轻量级Mysql分库分表(Sharding)中间件，丰富的Sharding算法支持(2类4种分片算法)，能够方便DBA实现库的水平扩容和降低数据迁移成本。Kratos站在巨人的肩膀上(SpringJdbc)，采用与应用集成架构，放弃通用性，只为换取更好的执行性能与降低分布式环境下外围系统的宕机风险。<br>
 
 - [使用手册](https://github.com/gaoxianglong/kratos/wiki)<br>
@@ -53,6 +52,6 @@
 - Wiki：https://github.com/gaoxianglong/kratos/wiki
 - Issues：https://github.com/gaoxianglong/kratos/issues
 - QQ Group:150445731
-- [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/gaoxianglong/kratos)
+- [![Join the chat at https://gitter.im/gaoxianglong/kratos](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/gaoxianglong/kratos?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ----------
