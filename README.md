@@ -5,6 +5,8 @@
 - [使用手册](https://github.com/gaoxianglong/kratos/wiki)<br>
 - [常见问题](https://github.com/gaoxianglong/kratos/wiki/常见问题)<br>
 
+----------
+
 ## kratos的优点
 - 动态数据源的无缝切换；<br>
 - master/slave一主一从读写分离；<br>
@@ -20,6 +22,8 @@
 - 提供内置验证页面，方便开发、测试以及运维对执行后的sql进行验证；<br>
 - 目标和职责定位明确，仅专注于Sharding，不支持其它多余或鸡肋功能、无需兼容通用性，因此核心代码量少、易读易维护；<br>
 
+----------
+
 ## kratos的分片模型
 ##### kratos支持2类4种分片算法：
 - 库内分片类型：
@@ -29,6 +33,8 @@
   - 片名连续的一库一片算法；
   - 非片名连续的一库一片算法；
 
+----------
+
 ## kratos的使用注意事项
 - 不支持强一致性的分布式事务，但可以在业务层依赖MQ、异步操作的方式实现事物，保证最终一致性即可；
 - 不建议、不支持多表查询，所有多表查询sql，务必全部打散为单条sql逐条执行；
@@ -37,3 +43,11 @@
 - 不支持sql语句中出现数据库别名；
 - 路由条件必须是整数类型；
 - 在连续分片模式下，子表后缀为符号"_"+4位整型，比如“tb_0001”——"tb_1024"；
+
+----------
+
+## 学习和联系我们
+- 项目主页：https://github.com/gaoxianglong/kratos
+- Wiki：https://github.com/gaoxianglong/kratos/wiki
+- Issues：https://github.com/gaoxianglong/kratos/issues
+- QQ Group:150445731
