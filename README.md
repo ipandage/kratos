@@ -51,3 +51,4 @@
 - Wiki：https://github.com/gaoxianglong/kratos/wiki
 - Issues：https://github.com/gaoxianglong/kratos/issues
 - QQ Group:150445731
+- [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/gaoxianglong/kratos)
