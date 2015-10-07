@@ -17,7 +17,7 @@ package com.gxl.kratos.utils.web.http;
 
 import java.util.Date;
 import com.alibaba.fastjson.JSONObject;
-import com.gxl.kratos.jdbc.core.KratosJdbcTemplate;
+import com.gxl.kratos.core.KratosJdbcTemplate;
 
 /**
  * 获取index首页数据
