@@ -1,7 +1,7 @@
 ![](http://dl.iteye.com/upload/picture/pic/133973/d30fc066-9cb2-369e-bcae-5a729733c683.jpg)
 ## kratos简介 [![Build Status](https://api.travis-ci.org/biezhi/blade.svg?branch=master)]()  [![Hex.pm](https://img.shields.io/hexpm/l/plug.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
 
-轻量级Mysql分库分表(Sharding)中间件，丰富的Sharding算法支持(2类4种分片算法)，能够方便DBA实现库的水平扩容和降低数据迁移成本。Kratos站在巨人的肩膀上(SpringJdbc)，采用与应用集成架构，放弃通用性，只为换取更好的执行性能与降低分布式环境下外围系统的宕机风险。<br>
+轻量级Mysql分库分表(Sharding)中间件，丰富的Sharding算法支持(2类4种分片算法)，能够方便DBA实现库的水平扩容和降低数据迁移成本。Kratos站在巨人的肩膀上(SpringJdbc、Druid)，采用与应用集成架构，放弃通用性，只为换取更好的执行性能与降低分布式环境下外围系统的宕机风险。<br>
 
 - [使用手册](https://github.com/gaoxianglong/kratos/wiki)<br>
 - [常见问题](https://github.com/gaoxianglong/kratos/wiki/常见问题)<br>
@@ -12,7 +12,7 @@
 - 动态数据源的无缝切换；<br>
 - master/slave一主一从读写分离；<br>
 - Sql独立配置，与逻辑代码解耦；<br>
-- 单线程读重试(取决于的数据库连接池是否支持，推荐使用淘宝Druid)；<br>
+- 单线程读重试(取决于的数据库连接池是否支持)；<br>
 - 单独且友好支持Mysql数据库，不支持其它RDBMS库；<br>
 - 非Proxy架构，与应用集成，应用直连数据库，降低外围系统依赖带来的宕机风险；<br>
 - 使用简单，侵入性低，站在巨人的肩膀上，依赖于Spring JDBC；<br>
