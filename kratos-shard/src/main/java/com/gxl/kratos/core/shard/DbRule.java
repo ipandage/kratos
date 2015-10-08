@@ -13,25 +13,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.gxl.kratos.sql;
+package com.gxl.kratos.core.shard;
 
-import com.gxl.kratos.sql.ast.SQLObject;
-import com.gxl.kratos.sql.dialect.mysql.visitor.MySqlOutputVisitor;
+import javax.annotation.Resource;
+import org.springframework.stereotype.Component;
+
+import com.gxl.kratos.core.shard.KratosJdbcTemplate;
 
 /**
- * Sql工具类
- *
+ * 解析分库规则后计算分库索引
+ * 
  * @author gaoxianglong
  */
-public class SQLUtils {
-	public static String toSQLString(SQLObject sqlObject, String dbType) {
-		return toSQLString(sqlObject);
-	}
+@Component
+public class DbRule extends RuleImpl {
+	@Resource
+	private KratosJdbcTemplate kJdbcTemplate;
 
-	public static String toSQLString(SQLObject sqlObject) {
-		StringBuilder out = new StringBuilder();
-		sqlObject.accept(new MySqlOutputVisitor(out));
-		String sql = out.toString();
-		return sql;
+	@Override
+	public int getIndex(long routeValue, String ruleArray) {
+		int dbIndex = -1;
+		if (kJdbcTemplate.getShardMode()) {
+			dbIndex = getDbIndexbyOne(routeValue, ruleArray);
+		} else {
+			dbIndex = getDbIndex(routeValue, ruleArray);
+		}
+		return dbIndex;
 	}
 }

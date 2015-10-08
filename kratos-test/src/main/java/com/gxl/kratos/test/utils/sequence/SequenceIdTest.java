@@ -17,10 +17,12 @@ package com.gxl.kratos.test.utils.sequence;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
-import com.gxl.kratos.utils.sequence.DbConnectionManager;
-import com.gxl.kratos.utils.sequence.SequenceIDManger;
+
+import com.gxl.kratos.util.sequence.DbConnectionManager;
+import com.gxl.kratos.util.sequence.SequenceIDManger;
 
 /**
  * 获取SequenceId测试类

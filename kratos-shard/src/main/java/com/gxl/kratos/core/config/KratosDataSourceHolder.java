@@ -13,25 +13,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.gxl.kratos.sql;
+package com.gxl.kratos.core.config;
 
-import com.gxl.kratos.sql.ast.SQLObject;
-import com.gxl.kratos.sql.dialect.mysql.visitor.MySqlOutputVisitor;
+import org.springframework.stereotype.Component;
 
 /**
- * Sql工具类
- *
+ * master数据源路由选择器
+ * 
  * @author gaoxianglong
  */
-public class SQLUtils {
-	public static String toSQLString(SQLObject sqlObject, String dbType) {
-		return toSQLString(sqlObject);
+@Component("dataSourceHolder")
+public class KratosDataSourceHolder implements DataSourceHolder {
+	private static final ThreadLocal<Integer> holder;
+
+	static {
+		holder = new ThreadLocal<Integer>();
 	}
 
-	public static String toSQLString(SQLObject sqlObject) {
-		StringBuilder out = new StringBuilder();
-		sqlObject.accept(new MySqlOutputVisitor(out));
-		String sql = out.toString();
-		return sql;
+	@Override
+	public void setIndex(int index) {
+		holder.set(index);
+	}
+
+	@Override
+	public int getIndex() {
+		return holder.get();
 	}
 }

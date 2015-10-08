@@ -13,25 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.gxl.kratos.sql;
-
-import com.gxl.kratos.sql.ast.SQLObject;
-import com.gxl.kratos.sql.dialect.mysql.visitor.MySqlOutputVisitor;
+package com.gxl.kratos.core.config;
 
 /**
- * Sql工具类
- *
+ * kratos的数据源路由接口
+ * 
  * @author gaoxianglong
  */
-public class SQLUtils {
-	public static String toSQLString(SQLObject sqlObject, String dbType) {
-		return toSQLString(sqlObject);
-	}
-
-	public static String toSQLString(SQLObject sqlObject) {
-		StringBuilder out = new StringBuilder();
-		sqlObject.accept(new MySqlOutputVisitor(out));
-		String sql = out.toString();
-		return sql;
-	}
+public interface DataSource {
+	// ...
 }

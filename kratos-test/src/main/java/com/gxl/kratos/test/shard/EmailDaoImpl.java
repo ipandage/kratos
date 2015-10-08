@@ -16,11 +16,13 @@
 package com.gxl.kratos.test.shard;
 
 import java.util.List;
+
 import javax.annotation.Resource;
+
 import org.springframework.stereotype.Repository;
 
-import com.gxl.kratos.core.KratosJdbcTemplate;
-import com.gxl.kratos.utils.sql.PropertyPlaceholderConfigurer;
+import com.gxl.kratos.core.shard.KratosJdbcTemplate;
+import com.gxl.kratos.sql.PropertyPlaceholderConfigurer;
 
 /**
  * email反向索引表Dao接口

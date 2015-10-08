@@ -29,8 +29,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.gxl.kratos.test.User;
 import com.gxl.kratos.test.UserDao;
-import com.gxl.kratos.utils.sequence.DbConnectionManager;
-import com.gxl.kratos.utils.sequence.SequenceIDManger;
+import com.gxl.kratos.util.sequence.DbConnectionManager;
+import com.gxl.kratos.util.sequence.SequenceIDManger;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 /* 片名连续的库内分片配置 */

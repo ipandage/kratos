@@ -13,25 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.gxl.kratos.sql;
+package com.gxl.kratos.util.xml;
 
-import com.gxl.kratos.sql.ast.SQLObject;
-import com.gxl.kratos.sql.dialect.mysql.visitor.MySqlOutputVisitor;
+import java.util.List;
 
-/**
- * Sql工具类
- *
- * @author gaoxianglong
- */
-public class SQLUtils {
-	public static String toSQLString(SQLObject sqlObject, String dbType) {
-		return toSQLString(sqlObject);
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "beans")
+@XmlAccessorType(XmlAccessType.FIELD)
+public class Beans {
+	@XmlElement(name = "bean", nillable = true)
+	private List<Bean> bean;
+
+	public List<Bean> getBean() {
+		return bean;
 	}
 
-	public static String toSQLString(SQLObject sqlObject) {
-		StringBuilder out = new StringBuilder();
-		sqlObject.accept(new MySqlOutputVisitor(out));
-		String sql = out.toString();
-		return sql;
+	public void setBean(List<Bean> bean) {
+		this.bean = bean;
 	}
 }

@@ -18,10 +18,11 @@ package com.gxl.kratos.test;
 import java.util.List;
 
 import javax.annotation.Resource;
+
 import org.springframework.stereotype.Repository;
 
-import com.gxl.kratos.core.KratosJdbcTemplate;
-import com.gxl.kratos.utils.sql.PropertyPlaceholderConfigurer;
+import com.gxl.kratos.core.shard.KratosJdbcTemplate;
+import com.gxl.kratos.sql.PropertyPlaceholderConfigurer;
 
 /**
  * 用户信息Dao接口实现

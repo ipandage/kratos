@@ -13,25 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.gxl.kratos.sql;
-
-import com.gxl.kratos.sql.ast.SQLObject;
-import com.gxl.kratos.sql.dialect.mysql.visitor.MySqlOutputVisitor;
+package com.gxl.kratos.core.shard;
 
 /**
- * Sql工具类
- *
+ * 路由规则接口
+ * 
  * @author gaoxianglong
  */
-public class SQLUtils {
-	public static String toSQLString(SQLObject sqlObject, String dbType) {
-		return toSQLString(sqlObject);
-	}
-
-	public static String toSQLString(SQLObject sqlObject) {
-		StringBuilder out = new StringBuilder();
-		sqlObject.accept(new MySqlOutputVisitor(out));
-		String sql = out.toString();
-		return sql;
-	}
+public interface Rule {
+	/**
+	 * 获取库索引/表索引
+	 * 
+	 * @author gaoxianglong
+	 * 
+	 * @param route
+	 *            路由条件
+	 * 
+	 * @param ruleArray
+	 *            路由规则
+	 * 
+	 * @throws ShardException
+	 * 
+	 * @return int 库索引/表索引
+	 */
+	public int getIndex(long route, String ruleArray);
 }

@@ -13,25 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.gxl.kratos.sql;
+package com.gxl.kratos.core.shard;
 
-import com.gxl.kratos.sql.ast.SQLObject;
-import com.gxl.kratos.sql.dialect.mysql.visitor.MySqlOutputVisitor;
+import org.springframework.stereotype.Component;
+
+import com.gxl.kratos.exception.ShardException;
 
 /**
- * Sql工具类
- *
+ * 解析分表规则后计算分表索引
+ * 
  * @author gaoxianglong
  */
-public class SQLUtils {
-	public static String toSQLString(SQLObject sqlObject, String dbType) {
-		return toSQLString(sqlObject);
-	}
-
-	public static String toSQLString(SQLObject sqlObject) {
-		StringBuilder out = new StringBuilder();
-		sqlObject.accept(new MySqlOutputVisitor(out));
-		String sql = out.toString();
-		return sql;
+@Component
+public class TabRule extends RuleImpl {
+	@Override
+	public int getIndex(long routeValue, String ruleArray) {
+		return getTabIndex(routeValue, ruleArray);
 	}
 }

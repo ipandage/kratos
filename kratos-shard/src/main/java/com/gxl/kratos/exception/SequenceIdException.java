@@ -13,25 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.gxl.kratos.sql;
-
-import com.gxl.kratos.sql.ast.SQLObject;
-import com.gxl.kratos.sql.dialect.mysql.visitor.MySqlOutputVisitor;
+package com.gxl.kratos.exception;
 
 /**
- * Sql工具类
- *
+ * SequenceId生成异常
+ * 
  * @author gaoxianglong
  */
-public class SQLUtils {
-	public static String toSQLString(SQLObject sqlObject, String dbType) {
-		return toSQLString(sqlObject);
-	}
+public class SequenceIdException extends UtilsRuntimeException {
+	private static final long serialVersionUID = 467676658994285663L;
 
-	public static String toSQLString(SQLObject sqlObject) {
-		StringBuilder out = new StringBuilder();
-		sqlObject.accept(new MySqlOutputVisitor(out));
-		String sql = out.toString();
-		return sql;
+	public SequenceIdException(String str) {
+		super(str);
 	}
 }

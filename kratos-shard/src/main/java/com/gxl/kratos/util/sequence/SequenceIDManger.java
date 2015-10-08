@@ -13,25 +13,34 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.gxl.kratos.sql;
-
-import com.gxl.kratos.sql.ast.SQLObject;
-import com.gxl.kratos.sql.dialect.mysql.visitor.MySqlOutputVisitor;
+package com.gxl.kratos.util.sequence;
 
 /**
- * Sql工具类
- *
+ * sequenceID的Manager类
+ * 
  * @author gaoxianglong
  */
-public class SQLUtils {
-	public static String toSQLString(SQLObject sqlObject, String dbType) {
-		return toSQLString(sqlObject);
+public class SequenceIDManger {
+	private SequenceIDManger() {
 	}
 
-	public static String toSQLString(SQLObject sqlObject) {
-		StringBuilder out = new StringBuilder();
-		sqlObject.accept(new MySqlOutputVisitor(out));
-		String sql = out.toString();
-		return sql;
+	/**
+	 * 获取sequenceID
+	 * 
+	 * @author gaoxianglong
+	 * 
+	 * @param idcNum
+	 *            IDC机房编码, 用于区分不同的IDC机房,1-3位长度
+	 * 
+	 * @param userType
+	 *            类别,1-2位长度
+	 * 
+	 * @param memData
+	 *            内存占位数量
+	 * 
+	 * @return long 返回生成的17-19位sequenceId
+	 */
+	public static long getSequenceId(int idcNum, int type, long memData) {
+		return CreateSequenceIdService.createSequenceIdService().getSequenceId(idcNum, type, memData);
 	}
 }

@@ -13,25 +13,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.gxl.kratos.sql;
-
-import com.gxl.kratos.sql.ast.SQLObject;
-import com.gxl.kratos.sql.dialect.mysql.visitor.MySqlOutputVisitor;
+package com.gxl.kratos.core.config;
 
 /**
- * Sql工具类
- *
+ * 数据源路由选择器接口
+ * 
  * @author gaoxianglong
  */
-public class SQLUtils {
-	public static String toSQLString(SQLObject sqlObject, String dbType) {
-		return toSQLString(sqlObject);
-	}
+public interface DataSourceHolder {
+	/**
+	 * 设置数据源路由索引
+	 * 
+	 * @author JohnGao
+	 * 
+	 * @param index
+	 *            数据源路由索引
+	 * 
+	 * @return void
+	 */
+	public void setIndex(int index);
 
-	public static String toSQLString(SQLObject sqlObject) {
-		StringBuilder out = new StringBuilder();
-		sqlObject.accept(new MySqlOutputVisitor(out));
-		String sql = out.toString();
-		return sql;
-	}
+	/**
+	 * 获取数据源路由索引
+	 * 
+	 * @author JohnGao
+	 * 
+	 * @return int 数据源路由索引
+	 */
+	public int getIndex();
 }

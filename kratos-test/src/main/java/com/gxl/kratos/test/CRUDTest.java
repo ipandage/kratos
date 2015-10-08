@@ -16,14 +16,17 @@
 package com.gxl.kratos.test;
 
 import java.util.List;
+
 import javax.annotation.Resource;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import com.gxl.kratos.utils.sequence.DbConnectionManager;
-import com.gxl.kratos.utils.sequence.SequenceIDManger;
+
+import com.gxl.kratos.util.sequence.DbConnectionManager;
+import com.gxl.kratos.util.sequence.SequenceIDManger;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath*:kratos1-context.xml")

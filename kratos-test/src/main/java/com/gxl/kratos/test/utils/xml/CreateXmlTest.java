@@ -16,10 +16,12 @@
 package com.gxl.kratos.test.utils.xml;
 
 import java.io.File;
+
 import org.junit.Test;
-import com.gxl.kratos.utils.xml.CreateC3p0Xml;
-import com.gxl.kratos.utils.xml.CreateCoreXml;
-import com.gxl.kratos.utils.xml.CreateDruidXml;
+
+import com.gxl.kratos.util.xml.CreateC3p0Xml;
+import com.gxl.kratos.util.xml.CreateCoreXml;
+import com.gxl.kratos.util.xml.CreateDruidXml;
 
 import junit.framework.Assert;
 
