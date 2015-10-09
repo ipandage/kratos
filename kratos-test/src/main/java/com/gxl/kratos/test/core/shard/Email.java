@@ -13,26 +13,42 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.gxl.kratos.test.shard;
+package com.gxl.kratos.test.core.shard;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
 /**
- * Email实体映射类
- * 
- * @author gaoxianglong
+ * 对应数据库表[email_index]
+ *
+ * @author JohnGao
  */
 @Component
-public class EmailMapper implements RowMapper<Email> {
-	@Override
-	public Email mapRow(ResultSet rs, int rowNum) throws SQLException {
-		Email email = new Email();
-		email.setEmail(rs.getString("email"));
-		email.setEmail_hash(rs.getLong("email_hash"));
-		email.setUserinfo_Id(rs.getLong("userinfo_Id"));
+public class Email {
+	private String email;
+	private long email_hash;
+	private long userinfo_Id;
+
+	public String getEmail() {
 		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public long getEmail_hash() {
+		return email_hash;
+	}
+
+	public void setEmail_hash(long email_hash) {
+		this.email_hash = email_hash;
+	}
+
+	public long getUserinfo_Id() {
+		return userinfo_Id;
+	}
+
+	public void setUserinfo_Id(long userinfo_Id) {
+		this.userinfo_Id = userinfo_Id;
 	}
 }

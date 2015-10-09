@@ -19,7 +19,7 @@
 			expression="org.aspectj.lang.annotation.Aspect" />
 	</context:component-scan>
 	<!-- 片名连续的库内分片配置 -->
-	<bean id="kJdbcTemplate" class="com.gxl.kratos.core.KratosJdbcTemplate">
+	<bean id="kJdbcTemplate" class="com.gxl.kratos.core.shard.KratosJdbcTemplate">
 		<constructor-arg name="isShard" value="true" />
 		<property name="dataSource" ref="kDataSourceGroup" />
 		<property name="wr_weight" value="r0w0" />
@@ -30,8 +30,7 @@
 		<property name="dbRuleArray" value="#userinfo_id|email_hash# % 4 / 2" />
 		<property name="tbRuleArray" value="#userinfo_id|email_hash# % 4 % 2" />
 	</bean>
-	<bean id="kDataSourceGroup"
-		class="com.gxl.kratos.datasource.config.KratosDatasourceGroup">
+	<bean id="kDataSourceGroup" class="com.gxl.kratos.core.config.KratosDatasourceGroup">
 		<property name="targetDataSources">
 			<map key-type="java.lang.Integer">
 				<entry key="0" value-ref="dataSource1" />
@@ -39,7 +38,7 @@
 			</map>
 		</property>
 	</bean>
-	<bean class="com.gxl.kratos.utils.sql.PropertyPlaceholderConfigurer">
+	<bean class="com.gxl.kratos.sql.PropertyPlaceholderConfigurer">
 		<constructor-arg name="path" value="classpath:sql.properties" />
 	</bean>
 </beans>

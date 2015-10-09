@@ -18,13 +18,12 @@
 		<context:include-filter type="annotation"
 			expression="org.aspectj.lang.annotation.Aspect" />
 	</context:component-scan>
-	<bean id="kJdbcTemplate" class="com.gxl.kratos.core.KratosJdbcTemplate">
+	<bean id="kJdbcTemplate" class="com.gxl.kratos.core.shard.KratosJdbcTemplate">
 		<constructor-arg name="isShard" value="false" />
 		<property name="dataSource" ref="kDataSourceGroup" />
 		<property name="wr_weight" value="r1w0" />
 	</bean>
-	<bean id="kDataSourceGroup"
-		class="com.gxl.kratos.datasource.config.KratosDatasourceGroup">
+	<bean id="kDataSourceGroup" class="com.gxl.kratos.core.config.KratosDatasourceGroup">
 		<property name="targetDataSources">
 			<map key-type="java.lang.Integer">
 				<entry key="0" value-ref="dataSource1" />
@@ -32,7 +31,7 @@
 			</map>
 		</property>
 	</bean>
-	<bean class="com.gxl.kratos.utils.sql.PropertyPlaceholderConfigurer">
-		<constructor-arg name="path" value="classpath:ms-sql.properties" />
+	<bean class="com.gxl.kratos.sql.PropertyPlaceholderConfigurer">
+		<constructor-arg name="path" value="classpath:sql.properties" />
 	</bean>
 </beans>

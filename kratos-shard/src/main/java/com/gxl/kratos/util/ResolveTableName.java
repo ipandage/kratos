@@ -32,8 +32,7 @@ import com.gxl.kratos.sql.parser.SQLStatementParser;
  * 
  * @author gaoxianglong
  */
-@Component("resolveTableName")
-public class ResolveTableName {
+public abstract class ResolveTableName {
 	/**
 	 * 解析数据库表名
 	 *
@@ -43,12 +42,12 @@ public class ResolveTableName {
 	 * 
 	 * @return tabName 数据库表名
 	 */
-	public String getTabName(String sql) {
+	public static String getTabName(String sql) {
 		String tabName = null;
 		/* 生成AST抽象语法树 */
 		SQLStatementParser parser = new MySqlStatementParser(sql);
 		List<SQLStatement> statements = parser.parseStatementList();
-		if (0 < statements.size()) {
+		if (!statements.isEmpty()) {
 			SQLStatement statement = statements.get(0);
 			if (statement instanceof SQLSelectStatement) {
 				SQLSelectStatement selectStatement = (SQLSelectStatement) statement;
@@ -67,5 +66,19 @@ public class ResolveTableName {
 			}
 		}
 		return tabName;
+	}
+
+	public static String getNewTabName(int index, String tabName) {
+		String newTabName = null;
+		if (index < 10) {
+			newTabName = tabName + "_000" + index;
+		} else if (index < 100) {
+			newTabName = tabName + "_00" + index;
+		} else if (index < 1000) {
+			newTabName = tabName + "_0" + index;
+		} else {
+			newTabName = tabName + "_" + index;
+		}
+		return newTabName;
 	}
 }

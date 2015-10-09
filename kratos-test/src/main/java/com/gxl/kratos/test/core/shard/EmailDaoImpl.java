@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.gxl.kratos.test.shard;
+package com.gxl.kratos.test.core.shard;
 
 import java.util.List;
 

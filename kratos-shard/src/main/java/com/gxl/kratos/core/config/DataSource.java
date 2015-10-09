@@ -21,5 +21,4 @@ package com.gxl.kratos.core.config;
  * @author gaoxianglong
  */
 public interface DataSource {
-	// ...
 }

@@ -38,7 +38,7 @@ public abstract class GetIndexData {
 	@SuppressWarnings("deprecation")
 	public static String getData(KratosJdbcTemplate jdbcTemplate) {
 		JSONObject jsonObj = new JSONObject();
-		jsonObj.put("kratosVersion", "1.3.4");
+		jsonObj.put("kratosVersion", "1.3.5");
 		jsonObj.put("osName", System.getProperty("os.name"));
 		jsonObj.put("javaVersion", System.getProperty("java.version"));
 		jsonObj.put("JvmName", System.getProperty("java.vm.name"));

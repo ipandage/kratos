@@ -37,10 +37,6 @@ public class DataBaseRoute implements Route {
 	@Resource
 	private KratosJdbcTemplate kJdbcTemplate;
 	@Resource
-	private ResolveRoute resolveRoute;
-	@Resource
-	private ResolveTableName resolveTableName;
-	@Resource
 	private SetTabName setTabName;
 	@Resource
 	private DbRule dbRule;
@@ -57,13 +53,13 @@ public class DataBaseRoute implements Route {
 		if (keyNames.isEmpty())
 			return null;
 		/* 解析SQL语句中的路由条件 */
-		long routeValue = resolveRoute.getRoute(sql, keyNames);
+		long routeValue = ResolveRoute.getRoute(sql, keyNames);
 		int dbIndex = dbRule.getIndex(routeValue, dbRuleArray);
 		if (kJdbcTemplate.getConsistent()) {
 			/* 解析数据库表名 */
-			final String TAB_NAME = resolveTableName.getTabName(sql);
+			final String TAB_NAME = ResolveTableName.getTabName(sql);
 			/* 设置片名 */
-			newSQL = setTabName.setName(dbIndex, TAB_NAME, newSQL);
+			newSQL = setTabName.setName(dbIndex, TAB_NAME, sql);
 		} else {
 			newSQL = sql;
 		}
@@ -82,7 +78,7 @@ public class DataBaseRoute implements Route {
 		if (keyNames.isEmpty())
 			return null;
 		/* 解析SQL语句中的路由条件 */
-		long routeValue = resolveRoute.getRoute(sql, keyNames);
+		long routeValue = ResolveRoute.getRoute(sql, keyNames);
 		int dbIndex = dbRule.getIndex(routeValue, dbRuleArray);
 		int tbIndex = tabRule.getIndex(routeValue, tbRuleArray);
 		/* 解析配置文件中数据库和数据库表的数量 */
@@ -90,7 +86,7 @@ public class DataBaseRoute implements Route {
 		int tbSize = Integer.parseInt(values[1]);
 		int dbSize = Integer.parseInt(values[2]);
 		/* 解析数据库表名 */
-		final String TAB_NAME = resolveTableName.getTabName(sql);
+		final String TAB_NAME = ResolveTableName.getTabName(sql);
 		/* 设置片名 */
 		newSQL = setTabName.setName(dbIndex, tbIndex, dbSize, tbSize, TAB_NAME, sql);
 		int index = ResolveRWWeight.getIndex(kJdbcTemplate.getWr_weight(), indexType);

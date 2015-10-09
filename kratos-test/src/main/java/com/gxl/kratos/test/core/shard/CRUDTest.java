@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.gxl.kratos.test.shard;
+package com.gxl.kratos.test.core.shard;
 
 import java.util.List;
 
@@ -38,7 +38,7 @@ import com.gxl.kratos.util.sequence.SequenceIDManger;
 /* 非片名连续的库内分片配置 */
 // @ContextConfiguration(locations = "classpath*:kratos3-context.xml")
 /* 片名连续的一库一片配置 */
-//@ContextConfiguration(locations = "classpath*:kratos4-context.xml")
+// @ContextConfiguration(locations = "classpath*:kratos4-context.xml")
 /* 非片名连续的一库一片配置 */
 @ContextConfiguration(locations = "classpath*:kratos5-context.xml")
 public class CRUDTest {
@@ -53,7 +53,7 @@ public class CRUDTest {
 	private Email email;
 	final static String NAME = "root";
 	final static String PWD = "88888888";
-	final static String URL = "jdbc:mysql://ip:3306/um_id";
+	final static String URL = "jdbc:mysql://120.24.97.207:3306/um_id";
 	final static String DRIVER = "com.mysql.jdbc.Driver";
 
 	/**
@@ -74,7 +74,7 @@ public class CRUDTest {
 		try {
 			long sequenceID = SequenceIDManger.getSequenceId(1, 1, 5000);
 			System.out.println("sequenceID->" + sequenceID);
-			email.setEmail("gaoxianglong@sina.com");
+			email.setEmail("zhangsanfeng@163.com");
 			email.setEmail_hash(Math.abs(email.getEmail().hashCode()));
 			email.setUserinfo_Id(sequenceID);
 			emailDao.insertEmail(email);
@@ -95,7 +95,7 @@ public class CRUDTest {
 	 */
 	public @Test void testQuery() {
 		try {
-			email.setEmail("gaoxianglong@sina.com");
+			email.setEmail("zhangsanfeng@163.com");
 			email.setEmail_hash(Math.abs(email.getEmail().hashCode()));
 			List<Email> emails = emailDao.queryEmailbyId(email);
 			if (!emails.isEmpty()) {

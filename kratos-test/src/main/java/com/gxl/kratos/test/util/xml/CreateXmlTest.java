@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.gxl.kratos.test.utils.xml;
+package com.gxl.kratos.test.util.xml;
 
 import java.io.File;
 

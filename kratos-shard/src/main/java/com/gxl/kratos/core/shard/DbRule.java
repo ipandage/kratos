@@ -21,7 +21,7 @@ import org.springframework.stereotype.Component;
 import com.gxl.kratos.core.shard.KratosJdbcTemplate;
 
 /**
- * 解析分库规则后计算分库索引
+ * 解析分库规则后计算数据源索引
  * 
  * @author gaoxianglong
  */

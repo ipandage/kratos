@@ -18,6 +18,8 @@ package com.gxl.kratos.core.shard;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Component;
 
+import com.gxl.kratos.util.ResolveTableName;
+
 /**
  * 设置片名,比如通用的片名为tab,那么设置后则为tab_0000
  * 
@@ -52,27 +54,18 @@ public class SetTabName {
 	 * 
 	 * @return String 持有真正的数据库表名的SQL
 	 */
-	public String setName(int dbIndex, int tbIndex, int dbSize, int tbSize, String tabName, String sql) {
-		String newTabName = null;
-		int tbIndexInDb = -1;
+	public String setName(int dbIndex, int tabIndex, int dbSize, int tbSize, String tabName, String sql) {
+		int tabIndexInDb = -1;
 		if (kJdbcTemplate.getConsistent()) {
 			/* 计算平均每个数据库的表的数量 */
 			int tbSizeInDb = tbSize / dbSize;
 			/* 计算数据库表在指定数据库的索引,其算法为(库索引 * 平均每个数据库的表的数量 + 表索引) */
-			tbIndexInDb = dbIndex * tbSizeInDb + tbIndex;
+			tabIndexInDb = dbIndex * tbSizeInDb + tabIndex;
 		} else {
-			tbIndexInDb = tbIndex;
+			tabIndexInDb = tabIndex;
 		}
-		if (tbIndexInDb < 10) {
-			newTabName = tabName + "_000" + tbIndexInDb;
-		} else if (tbIndexInDb < 100) {
-			newTabName = tabName + "_00" + tbIndexInDb;
-		} else if (tbIndexInDb < 1000) {
-			newTabName = tabName + "_0" + tbIndexInDb;
-		} else {
-			newTabName = tabName + "_" + tbIndexInDb;
-		}
-		return sql.replaceFirst(tabName, newTabName);
+		final String NEW_TABNAME = ResolveTableName.getNewTabName(tabIndexInDb, tabName);
+		return sql.replaceFirst(tabName, NEW_TABNAME);
 	}
 
 	/**
@@ -83,24 +76,15 @@ public class SetTabName {
 	 * @param dbIndex
 	 *            数据源索引
 	 * 
-	 * @param tbName
+	 * @param tabName
 	 *            数据库通用表名
 	 * 
 	 * @param sql
 	 * 
 	 * @return String 持有真正的数据库表名的SQL
 	 */
-	public String setName(int dbIndex, String tbName, String sql) {
-		String newTabName = null;
-		if (dbIndex < 10) {
-			newTabName = tbName + "_000" + dbIndex;
-		} else if (dbIndex < 100) {
-			newTabName = tbName + "_00" + dbIndex;
-		} else if (dbIndex < 1000) {
-			newTabName = tbName + "_0" + dbIndex;
-		} else {
-			newTabName = tbName + "_" + dbIndex;
-		}
-		return sql.replaceFirst(tbName, newTabName);
+	public String setName(int dbIndex, String tabName, String sql) {
+		final String NEW_TABNAME = ResolveTableName.getNewTabName(dbIndex, tabName);
+		return sql.replaceFirst(tabName, NEW_TABNAME);
 	}
 }

@@ -13,28 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.gxl.kratos.core.shard;
+package com.gxl.kratos.util;
 
-/**
- * 路由规则接口
- * 
- * @author gaoxianglong
- */
-public interface Rule {
-	/**
-	 * 获取数据源索引/表索引
-	 * 
-	 * @author gaoxianglong
-	 * 
-	 * @param routeValue
-	 *            路由条件
-	 * 
-	 * @param ruleArray
-	 *            路由规则
-	 * 
-	 * @throws ShardException
-	 * 
-	 * @return int 库索引/表索引
-	 */
-	public int getIndex(long routeValue, String ruleArray);
+import org.junit.Test;
+import junit.framework.Assert;
+
+public class ResolveRWWeightTest {
+	public @Test void testGetIndex() {
+		Assert.assertEquals(0, ResolveRWWeight.getIndex("r1024w0", true));
+		Assert.assertEquals(1024, ResolveRWWeight.getIndex("r1024w0", false));
+		Assert.assertEquals(0, ResolveRWWeight.getIndex("R1024W0", true));
+		Assert.assertEquals(1024, ResolveRWWeight.getIndex("R0w1024", true));
+	}
 }

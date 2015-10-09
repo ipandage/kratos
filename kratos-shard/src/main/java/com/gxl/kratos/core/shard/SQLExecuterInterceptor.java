@@ -43,7 +43,7 @@ public class SQLExecuterInterceptor {
 	 * 
 	 * @return Object
 	 */
-	@Around("execution(* com.gxl.kratos.core.KratosJdbcTemplate.update*(..))")
+	@Around("execution(* com.gxl.kratos.core.shard.KratosJdbcTemplate.update*(..))")
 	public Object interceptUpdateSQL(ProceedingJoinPoint proceedingJoinPoint) {
 		return sqlExecute.execute(proceedingJoinPoint, true);
 	}
@@ -60,7 +60,7 @@ public class SQLExecuterInterceptor {
 	 * 
 	 * @return Object
 	 */
-	@Around("execution(* com.gxl.kratos.core.KratosJdbcTemplate.query*(..))")
+	@Around("execution(* com.gxl.kratos.core.shard.KratosJdbcTemplate.query*(..))")
 	public Object interceptQuerySQL(ProceedingJoinPoint proceedingJoinPoint) {
 		return sqlExecute.execute(proceedingJoinPoint, false);
 	}

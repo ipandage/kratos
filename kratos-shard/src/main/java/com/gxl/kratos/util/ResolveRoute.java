@@ -33,8 +33,7 @@ import com.gxl.kratos.sql.parser.SQLStatementParser;
  * 
  * @author gaoxianglong
  */
-@Component("resolveRoute")
-public class ResolveRoute {
+public abstract class ResolveRoute {
 	/**
 	 * 解析sql语句中的路由条件
 	 * 
@@ -47,12 +46,12 @@ public class ResolveRoute {
 	 * 
 	 * @return long 路由条件
 	 */
-	public long getRoute(String sql, List<String> rules) {
+	public static long getRoute(String sql, List<String> rules) {
 		long route = -1L;
 		/* 生成AST抽象语法树 */
 		SQLStatementParser parser = new MySqlStatementParser(sql);
 		List<SQLStatement> statements = parser.parseStatementList();
-		if (0 < statements.size()) {
+		if (!statements.isEmpty()) {
 			SQLStatement statement = statements.get(0);
 			if (statement instanceof SQLSelectStatement) {
 				SQLSelectStatement selectStatement = (SQLSelectStatement) statement;
@@ -105,7 +104,7 @@ public class ResolveRoute {
 	 * 
 	 * @return boolean 检测结果
 	 */
-	private boolean isRoute(String firstParam, List<String> rules, String sql) {
+	private static boolean isRoute(String firstParam, List<String> rules, String sql) {
 		boolean result = true;
 		if (!rules.contains(firstParam)) {
 			result = false;
