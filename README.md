@@ -51,7 +51,7 @@
 - 项目主页：https://github.com/gaoxianglong/kratos
 - Wiki：https://github.com/gaoxianglong/kratos/wiki
 - Issues：https://github.com/gaoxianglong/kratos/issues
-- QQ Group:150445731
+- :penguin: QQ Group:150445731
 - Blog：http://gao-xianglong.iteye.com
 - [![Join the chat at https://gitter.im/gaoxianglong/kratos](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/gaoxianglong/kratos?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
