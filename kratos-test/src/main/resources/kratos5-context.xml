@@ -28,6 +28,7 @@
 		<!-- 片名是否连续,true为片名连续,false为非片名连续 -->
 		<property name="consistent" value="false" />
 		<property name="dbRuleArray" value="#userinfo_id|email_hash# % 2" />
+		<property name="tbSuffix" value="_0000" />
 	</bean>
 	<bean id="kDataSourceGroup" class="com.gxl.kratos.core.config.KratosDatasourceGroup">
 		<property name="targetDataSources">

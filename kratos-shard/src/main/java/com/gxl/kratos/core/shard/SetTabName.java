@@ -64,7 +64,7 @@ public class SetTabName {
 		} else {
 			tabIndexInDb = tabIndex;
 		}
-		final String NEW_TABNAME = ResolveTableName.getNewTabName(tabIndexInDb, tabName);
+		final String NEW_TABNAME = ResolveTableName.getNewTabName(tabIndexInDb, tabName, kJdbcTemplate.getTbSuffix());
 		return sql.replaceFirst(tabName, NEW_TABNAME);
 	}
 
@@ -84,7 +84,7 @@ public class SetTabName {
 	 * @return String 持有真正的数据库表名的SQL
 	 */
 	public String setName(int dbIndex, String tabName, String sql) {
-		final String NEW_TABNAME = ResolveTableName.getNewTabName(dbIndex, tabName);
+		final String NEW_TABNAME = ResolveTableName.getNewTabName(dbIndex, tabName, kJdbcTemplate.getTbSuffix());
 		return sql.replaceFirst(tabName, NEW_TABNAME);
 	}
 }

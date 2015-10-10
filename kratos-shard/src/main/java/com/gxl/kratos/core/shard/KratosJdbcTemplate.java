@@ -66,6 +66,8 @@ public class KratosJdbcTemplate extends JdbcTemplate {
 	private String dbRuleArray;
 	/* 分库规则 */
 	private String tbRuleArray;
+	/* 分表后缀 */
+	private String tbSuffix;
 
 	public KratosJdbcTemplate() {
 	}
@@ -76,6 +78,14 @@ public class KratosJdbcTemplate extends JdbcTemplate {
 			logger.info("kratos的sharding开关已经打开...");
 		}
 		setIsShard(isShard);
+	}
+
+	public String getTbSuffix() {
+		return tbSuffix;
+	}
+
+	public void setTbSuffix(String tbSuffix) {
+		this.tbSuffix = tbSuffix;
 	}
 
 	public boolean getConsistent() {

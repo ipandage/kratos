@@ -68,16 +68,19 @@ public abstract class ResolveTableName {
 		return tabName;
 	}
 
-	public static String getNewTabName(int index, String tabName) {
+	public static String getNewTabName(int index, String tabName, String tbSuffix) {
 		String newTabName = null;
-		if (index < 10) {
-			newTabName = tabName + "_000" + index;
-		} else if (index < 100) {
-			newTabName = tabName + "_00" + index;
-		} else if (index < 1000) {
-			newTabName = tabName + "_0" + index;
+		String left = String.valueOf(tbSuffix.charAt(0));
+		String right = tbSuffix.split("[" + left + "]")[1];
+		StringBuffer placeholder = new StringBuffer();
+		int indexlength = String.valueOf(index).length();
+		int rightLength = right.length();
+		if (indexlength < rightLength) {
+			for (int i = 0; i < rightLength - indexlength; i++)
+				placeholder.append(right.charAt(0));
+			newTabName = tabName + left + placeholder.toString() + index;
 		} else {
-			newTabName = tabName + "_" + index;
+			newTabName = tabName + left + index;
 		}
 		return newTabName;
 	}
