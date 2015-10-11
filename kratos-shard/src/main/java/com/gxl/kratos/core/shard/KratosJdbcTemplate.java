@@ -55,7 +55,7 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 public class KratosJdbcTemplate extends JdbcTemplate {
 	private Logger logger = LoggerFactory.getLogger(KratosJdbcTemplate.class);
 	/* master/slave读写权重 */
-	private String wr_weight;
+	private String wr_weight = "r0w0";
 	/* 分库分表开关 */
 	private boolean isShard = false;
 	/* 分表模式,false为库内分片模式,true为一库一表分片模式 */
@@ -67,7 +67,7 @@ public class KratosJdbcTemplate extends JdbcTemplate {
 	/* 分库规则 */
 	private String tbRuleArray;
 	/* 分表后缀 */
-	private String tbSuffix;
+	private String tbSuffix = "_0000";
 
 	public KratosJdbcTemplate() {
 	}

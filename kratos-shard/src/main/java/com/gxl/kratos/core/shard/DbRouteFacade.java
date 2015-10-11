@@ -28,12 +28,12 @@ import com.gxl.kratos.util.ResolveRoute;
 import com.gxl.kratos.util.ResolveTableName;
 
 /**
- * 路由模式接口实现
+ * 路由模式的外观类
  * 
  * @author gaoxianglong
  */
 @Component
-public class DataBaseRoute implements Route {
+public class DbRouteFacade implements Route {
 	@Resource
 	private KratosJdbcTemplate kJdbcTemplate;
 	@Resource
@@ -46,7 +46,7 @@ public class DataBaseRoute implements Route {
 	private SetDataSource setDataSource;
 
 	@Override
-	public Object[] shardByOne(String sql, Object[] params, boolean indexType) {
+	public Object[] dbRouteByOne(String sql, Object[] params, boolean indexType) {
 		String newSQL = null;
 		String dbRuleArray = kJdbcTemplate.getDbRuleArray();
 		List<String> keyNames = GetKeyName.getName(true, dbRuleArray, null);
@@ -70,7 +70,7 @@ public class DataBaseRoute implements Route {
 	}
 
 	@Override
-	public Object[] shardByMany(String sql, Object[] params, boolean indexType) {
+	public Object[] dbRouteByMany(String sql, Object[] params, boolean indexType) {
 		String newSQL = null;
 		String dbRuleArray = kJdbcTemplate.getDbRuleArray();
 		String tbRuleArray = kJdbcTemplate.getTbRuleArray();

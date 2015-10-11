@@ -72,9 +72,9 @@ public class SQLExecute {
 				logger.info("sharding之前的SQL-->" + sql);
 				if (kJdbcTemplate.getIsShard()) {
 					if (kJdbcTemplate.getShardMode()) {
-						params = route.shardByOne(sql, params, indexType);
+						params = route.dbRouteByOne(sql, params, indexType);
 					} else {
-						params = route.shardByMany(sql, params, indexType);
+						params = route.dbRouteByMany(sql, params, indexType);
 					}
 					sql = params[0].toString();
 					logger.info("sharding之后的SQL-->" + sql);

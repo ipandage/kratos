@@ -41,7 +41,7 @@ public interface Route {
 	 * 
 	 * @return Object[] 重写后的委托对象的上下文信息
 	 */
-	public Object[] shardByOne(String sql, Object[] params, boolean indexType);
+	public Object[] dbRouteByOne(String sql, Object[] params, boolean indexType);
 
 	/**
 	 * 库内分片模式
@@ -61,5 +61,5 @@ public interface Route {
 	 * 
 	 * @return Object[] 重写后的委托对象的上下文信息
 	 */
-	public Object[] shardByMany(String sql, Object[] params, boolean indexType);
+	public Object[] dbRouteByMany(String sql, Object[] params, boolean indexType);
 }
