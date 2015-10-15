@@ -21,6 +21,8 @@ import java.util.List;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 
+import com.gxl.kratos.util.ResolveDbName;
+
 /**
  * 生成基于druid的数据源配置文件
  * 
@@ -54,6 +56,8 @@ public class CreateDruidXml implements CreateDSXml {
 	private String dbSize;
 	private boolean isShow;
 	private int dataSourceIndex;
+	private boolean init_method;
+	private String tbSuffix = "_0000";
 
 	public CreateDruidXml() {
 		try {
@@ -77,6 +81,8 @@ public class CreateDruidXml implements CreateDSXml {
 				Bean bean = new Bean();
 				bean.setId("dataSource" + (this.getDataSourceIndex() + i));
 				bean.setClass_("com.alibaba.druid.pool.DruidDataSource");
+				if (init_method)
+					bean.setInit_method("init");
 				bean.setDestroy_method("close");
 				List<Property> propertys = new ArrayList<Property>();
 				// Property name = new Property();
@@ -90,15 +96,7 @@ public class CreateDruidXml implements CreateDSXml {
 				password.setValue(this.getPassword());
 				Property url = new Property();
 				url.setName("url");
-				if (i < 10) {
-					url.setValue(this.getUrl() + "_000" + i);
-				} else if (i < 100) {
-					url.setValue(this.getUrl() + "_00" + i);
-				} else if (i < 1000) {
-					url.setValue(this.getUrl() + "_0" + i);
-				} else {
-					url.setValue(this.getUrl() + "_" + i);
-				}
+				url.setValue(ResolveDbName.getNewDbName(i, this.getUrl(), tbSuffix));
 				Property initialSize = new Property();
 				initialSize.setName("initialSize");
 				initialSize.setValue(this.getInitialSize());
@@ -331,5 +329,21 @@ public class CreateDruidXml implements CreateDSXml {
 
 	public void setIsShow(boolean isShow) {
 		this.isShow = isShow;
+	}
+
+	public boolean isInit_method() {
+		return init_method;
+	}
+
+	public void setInit_method(boolean init_method) {
+		this.init_method = init_method;
+	}
+
+	public String getTbSuffix() {
+		return tbSuffix;
+	}
+
+	public void setTbSuffix(String tbSuffix) {
+		this.tbSuffix = tbSuffix;
 	}
 }

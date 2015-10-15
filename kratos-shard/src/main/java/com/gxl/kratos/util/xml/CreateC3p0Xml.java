@@ -21,6 +21,8 @@ import java.util.List;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 
+import com.gxl.kratos.util.ResolveDbName;
+
 /**
  * 生成基于c3p0的数据源配置文件
  * 
@@ -42,6 +44,7 @@ public class CreateC3p0Xml implements CreateDSXml {
 	private Marshaller marshaller;
 	private boolean isShow;
 	private int dataSourceIndex;
+	private String tbSuffix = "_0000";
 
 	public CreateC3p0Xml() {
 		try {
@@ -74,15 +77,7 @@ public class CreateC3p0Xml implements CreateDSXml {
 				password.setValue(this.getPassword());
 				Property jdbcUrl = new Property();
 				jdbcUrl.setName("jdbcUrl");
-				if (i < 10) {
-					jdbcUrl.setValue(this.getJdbcUrl() + "_000" + i);
-				} else if (i < 100) {
-					jdbcUrl.setValue(this.getJdbcUrl() + "_00" + i);
-				} else if (i < 1000) {
-					jdbcUrl.setValue(this.getJdbcUrl() + "_0" + i);
-				} else {
-					jdbcUrl.setValue(this.getJdbcUrl() + "_" + i);
-				}
+				jdbcUrl.setValue(ResolveDbName.getNewDbName(i, this.getJdbcUrl(), tbSuffix));
 				Property driverClass = new Property();
 				driverClass.setName("driverClass");
 				driverClass.setValue(this.getDriverClass());
@@ -242,5 +237,13 @@ public class CreateC3p0Xml implements CreateDSXml {
 
 	public void setDbSize(String dbSize) {
 		this.dbSize = dbSize;
+	}
+
+	public String getTbSuffix() {
+		return tbSuffix;
+	}
+
+	public void setTbSuffix(String tbSuffix) {
+		this.tbSuffix = tbSuffix;
 	}
 }

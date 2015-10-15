@@ -62,6 +62,7 @@ public class CreateXmlTest {
 		CreateC3p0Xml c_xml = new CreateC3p0Xml();
 		/* 是否控制台输出生成的配置文件 */
 		c_xml.setIsShow(true);
+		c_xml.setTbSuffix("_0000");
 		/* 数据源索引起始 */
 		c_xml.setDataSourceIndex(1);
 		/* 配置分库分片信息 */
@@ -88,6 +89,7 @@ public class CreateXmlTest {
 	public @Test void testCreateC3p0MSXml() {
 		CreateC3p0Xml c_xml = new CreateC3p0Xml();
 		c_xml.setIsShow(true);
+		c_xml.setTbSuffix("_0000");
 		/* 生成master数据源信息 */
 		c_xml.setDataSourceIndex(1);
 		c_xml.setDbSize("16");
@@ -123,6 +125,9 @@ public class CreateXmlTest {
 		c_xml.setDataSourceIndex(1);
 		/* 配置分库分片信息 */
 		c_xml.setDbSize("16");
+		/* false为懒加载模式，反之启动时开始初始化数据源 */
+		c_xml.setInit_method(true);
+		c_xml.setTbSuffix("_0000");
 		/* 生成数据源信息 */
 		c_xml.setUsername("${username}");
 		c_xml.setPassword("${password}");
@@ -156,6 +161,9 @@ public class CreateXmlTest {
 		c_xml.setDataSourceIndex(1);
 		/* 配置分库分片信息 */
 		c_xml.setDbSize("16");
+		/* false为懒加载模式，反之启动时开始初始化数据源 */
+		c_xml.setInit_method(true);
+		c_xml.setTbSuffix("_0000");
 		/* 生成master数据源信息 */
 		c_xml.setUsername("${username}");
 		c_xml.setPassword("${password}");

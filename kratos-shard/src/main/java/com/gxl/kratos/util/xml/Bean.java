@@ -41,6 +41,17 @@ public class Bean {
 	@XmlAttribute(name = "destroy-method")
 	private String destroy_method;
 
+	@XmlAttribute(name = "init-method")
+	private String init_method;
+
+	public String getInit_method() {
+		return init_method;
+	}
+
+	public void setInit_method(String init_method) {
+		this.init_method = init_method;
+	}
+
 	public String getDestroy_method() {
 		return destroy_method;
 	}
