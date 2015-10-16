@@ -16,7 +16,6 @@
 package com.gxl.kratos.util;
 
 import java.util.List;
-import org.springframework.stereotype.Component;
 import com.gxl.kratos.sql.ast.SQLStatement;
 import com.gxl.kratos.sql.ast.statement.SQLDeleteStatement;
 import com.gxl.kratos.sql.ast.statement.SQLInsertStatement;
@@ -25,7 +24,9 @@ import com.gxl.kratos.sql.ast.statement.SQLSelectQueryBlock;
 import com.gxl.kratos.sql.ast.statement.SQLSelectStatement;
 import com.gxl.kratos.sql.ast.statement.SQLUpdateStatement;
 import com.gxl.kratos.sql.dialect.mysql.parser.MySqlStatementParser;
+import com.gxl.kratos.sql.dialect.mysql.visitor.MySqlOutputVisitor;
 import com.gxl.kratos.sql.parser.SQLStatementParser;
+import com.gxl.kratos.sql.visitor.SQLASTOutputVisitor;
 
 /**
  * 使用Druid的SqlParser解析数据库表名
@@ -43,29 +44,31 @@ public abstract class ResolveTableName {
 	 * @return tabName 数据库表名
 	 */
 	public static String getTabName(String sql) {
-		String tabName = null;
+		StringBuffer tabName = new StringBuffer();
 		/* 生成AST抽象语法树 */
 		SQLStatementParser parser = new MySqlStatementParser(sql);
 		List<SQLStatement> statements = parser.parseStatementList();
 		if (!statements.isEmpty()) {
 			SQLStatement statement = statements.get(0);
+			/* 将AST输出为字符串 */
+			SQLASTOutputVisitor outputVisitor = new MySqlOutputVisitor(tabName);
 			if (statement instanceof SQLSelectStatement) {
 				SQLSelectStatement selectStatement = (SQLSelectStatement) statement;
 				SQLSelect sqlselect = selectStatement.getSelect();
 				SQLSelectQueryBlock queryBlock = (SQLSelectQueryBlock) sqlselect.getQuery();
-				tabName = queryBlock.getFrom().toString();
+				queryBlock.getFrom().accept(outputVisitor);
 			} else if (statement instanceof SQLInsertStatement) {
 				SQLInsertStatement insertStatement = (SQLInsertStatement) statement;
-				tabName = insertStatement.getTableName().toString();
+				insertStatement.getTableName().accept(outputVisitor);
 			} else if (statement instanceof SQLDeleteStatement) {
 				SQLDeleteStatement deleteStatement = (SQLDeleteStatement) statement;
-				tabName = deleteStatement.getTableName().toString();
+				deleteStatement.getTableName().accept(outputVisitor);
 			} else if (statement instanceof SQLUpdateStatement) {
 				SQLUpdateStatement updateStatement = (SQLUpdateStatement) statement;
-				tabName = updateStatement.getTableName().toString();
+				updateStatement.getTableName().accept(outputVisitor);
 			}
 		}
-		return tabName;
+		return tabName.toString();
 	}
 
 	public static String getNewTabName(int index, String tabName, String tbSuffix) {

@@ -16,7 +16,6 @@
 package com.gxl.kratos.util;
 
 import java.util.List;
-import org.springframework.stereotype.Component;
 import com.gxl.kratos.exception.ShardException;
 import com.gxl.kratos.sql.ast.SQLStatement;
 import com.gxl.kratos.sql.ast.statement.SQLDeleteStatement;
@@ -58,9 +57,11 @@ public abstract class ResolveRoute {
 				SQLSelect sqlselect = selectStatement.getSelect();
 				SQLSelectQueryBlock queryBlock = (SQLSelectQueryBlock) sqlselect.getQuery();
 				List<String> values = queryBlock.getWhere_();
-				String firstParam = values.get(0);
-				if (isRoute(firstParam, rules, sql)) {
-					route = Long.parseLong(values.get(2));
+				if (!values.isEmpty()) {
+					String firstParam = values.get(0);
+					if (isRoute(firstParam, rules, sql)) {
+						route = Long.parseLong(values.get(2));
+					}
 				}
 			} else if (statement instanceof SQLInsertStatement) {
 				SQLInsertStatement insertStatement = (SQLInsertStatement) statement;
@@ -71,16 +72,20 @@ public abstract class ResolveRoute {
 			} else if (statement instanceof SQLDeleteStatement) {
 				SQLDeleteStatement deleteStatement = (SQLDeleteStatement) statement;
 				List<String> values = deleteStatement.getWhere_();
-				String firstParam = values.get(0);
-				if (isRoute(firstParam, rules, sql)) {
-					route = Long.parseLong(values.get(2));
+				if (!values.isEmpty()) {
+					String firstParam = values.get(0);
+					if (isRoute(firstParam, rules, sql)) {
+						route = Long.parseLong(values.get(2));
+					}
 				}
 			} else if (statement instanceof SQLUpdateStatement) {
 				SQLUpdateStatement updateStatement = (SQLUpdateStatement) statement;
 				List<String> values = updateStatement.getWhere_();
-				String firstParam = values.get(0);
-				if (isRoute(firstParam, rules, sql)) {
-					route = Long.parseLong(values.get(2));
+				if (!values.isEmpty()) {
+					String firstParam = values.get(0);
+					if (isRoute(firstParam, rules, sql)) {
+						route = Long.parseLong(values.get(2));
+					}
 				}
 			}
 		}
