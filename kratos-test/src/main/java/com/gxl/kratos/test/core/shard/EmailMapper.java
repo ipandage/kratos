@@ -32,7 +32,7 @@ public class EmailMapper implements RowMapper<Email> {
 		Email email = new Email();
 		email.setEmail(rs.getString("email"));
 		email.setEmail_hash(rs.getLong("email_hash"));
-		email.setUserinfo_Id(rs.getLong("userinfo_Id"));
+		email.setUserinfo_Id(rs.getLong("userinfo_test_id"));
 		return email;
 	}
 }

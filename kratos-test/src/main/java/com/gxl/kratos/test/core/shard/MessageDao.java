@@ -13,13 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.gxl.kratos.util;
+package com.gxl.kratos.test.core.shard;
 
-import org.junit.Test;
+import java.util.List;
 
-public class GetNewTabNameTest {
-	public @Test void getNewTabName() {
-		System.out.println(ResolveTableName.getNewTabName(1, "userinfo_test", "_0000"));
-		System.out.println(ResolveTableName.getNewTabName(1024, "userinfo_test", "_0000"));
-	}
+public interface MessageDao {
+	public void insertMessage(Message message) throws Exception;
+
+	public List<Message> queryMessagebyUid(long uid) throws Exception;
 }

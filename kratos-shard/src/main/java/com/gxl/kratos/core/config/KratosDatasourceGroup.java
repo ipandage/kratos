@@ -33,7 +33,7 @@ import com.gxl.kratos.core.shard.KratosJdbcTemplate;
  */
 public class KratosDatasourceGroup extends AbstractRoutingDataSource implements DataSource {
 	private Logger logger = LoggerFactory.getLogger(KratosDatasourceGroup.class);
-	@Resource
+	@Resource(name = "kratosDataSourceHolder")
 	private DataSourceHolder dataSourceHolder;
 
 	private KratosDatasourceGroup() {

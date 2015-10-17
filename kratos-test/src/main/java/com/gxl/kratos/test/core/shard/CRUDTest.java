@@ -53,7 +53,7 @@ public class CRUDTest {
 	private Email email;
 	final static String NAME = "root";
 	final static String PWD = "88888888";
-	final static String URL = "jdbc:mysql://ip:3306/um_id";
+	final static String URL = "jdbc:mysql://120.24.97.207:3306/um_id";
 	final static String DRIVER = "com.mysql.jdbc.Driver";
 
 	/**
@@ -74,7 +74,7 @@ public class CRUDTest {
 		try {
 			long sequenceID = SequenceIDManger.getSequenceId(1, 1, 5000);
 			System.out.println("sequenceID->" + sequenceID);
-			email.setEmail("zhangsanfeng@163.com");
+			email.setEmail("gap_xianglong@163.com");
 			email.setEmail_hash(Math.abs(email.getEmail().hashCode()));
 			email.setUserinfo_Id(sequenceID);
 			emailDao.insertEmail(email);
@@ -95,7 +95,7 @@ public class CRUDTest {
 	 */
 	public @Test void testQuery() {
 		try {
-			email.setEmail("zhangsanfeng@163.com");
+			email.setEmail("gap_xianglong@163.com");
 			email.setEmail_hash(Math.abs(email.getEmail().hashCode()));
 			List<Email> emails = emailDao.queryEmailbyId(email);
 			if (!emails.isEmpty()) {

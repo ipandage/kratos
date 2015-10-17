@@ -29,7 +29,7 @@ import com.gxl.kratos.sql.PropertyPlaceholderConfigurer;
  * 
  * @author gaoxianglong
  */
-@Repository("userDao")
+@Repository
 public class UserDaoImpl implements UserDao {
 	@Resource
 	private KratosJdbcTemplate kJdbcTemplate;
@@ -50,7 +50,7 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public List<User> queryUserbyId(long routeKey) throws Exception {
 		/* 耦合sql在业务逻辑代码中 */
-		final String SQL = "select username from userinfo where userinfo_id = " + routeKey + "";
+		final String SQL = "select username from userinfo_test where userinfo_test_id = " + routeKey + "";
 		return kJdbcTemplate.query(SQL, userMapper);
 	}
 }

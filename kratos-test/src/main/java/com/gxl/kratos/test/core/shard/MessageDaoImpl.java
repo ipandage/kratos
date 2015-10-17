@@ -16,21 +16,13 @@
 package com.gxl.kratos.test.core.shard;
 
 import java.util.List;
-
 import javax.annotation.Resource;
-
 import org.springframework.stereotype.Repository;
-
 import com.gxl.kratos.core.shard.KratosJdbcTemplate;
 import com.gxl.kratos.sql.PropertyPlaceholderConfigurer;
 
-/**
- * email反向索引表Dao接口
- * 
- * @author gaoxianglong
- */
 @Repository
-public class EmailDaoImpl implements EmailDao {
+public class MessageDaoImpl implements MessageDao {
 	@Resource
 	private KratosJdbcTemplate kJdbcTemplate;
 
@@ -38,17 +30,17 @@ public class EmailDaoImpl implements EmailDao {
 	private PropertyPlaceholderConfigurer property;
 
 	@Resource
-	private EmailMapper emailMapper;
+	private MessageMapper messageMapper;
 
 	@Override
-	public void insertEmail(Email email) throws Exception {
-		final String SQL = property.getSql("insertEmail", email.getEmail_hash());
-		kJdbcTemplate.update(SQL, new Object[] { email.getEmail(), email.getUserinfo_Id() });
+	public void insertMessage(Message message) throws Exception {
+		final String SQL = property.getSql("insertMessage", message.getUserinfo_test_id());
+		kJdbcTemplate.update(SQL, new Object[] { message.getMessage() });
 	}
 
 	@Override
-	public List<Email> queryEmailbyId(Email email) throws Exception {
-		final String SQL = property.getSql("queryEmailbyId", email.getEmail_hash());
-		return kJdbcTemplate.query(SQL, new Object[] { email.getEmail() }, emailMapper);
+	public List<Message> queryMessagebyUid(long uid) throws Exception {
+		final String SQL = property.getSql("queryMessagebyUid", uid);
+		return kJdbcTemplate.query(SQL, messageMapper);
 	}
 }

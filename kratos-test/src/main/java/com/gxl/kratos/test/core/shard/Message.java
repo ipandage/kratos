@@ -13,30 +13,42 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.gxl.kratos.core.config;
+package com.gxl.kratos.test.core.shard;
 
 import org.springframework.stereotype.Component;
 
 /**
- * master数据源路由选择器
- * 
- * @author gaoxianglong
+ * 对应数据库表[message_info]
+ *
+ * @author JohnGao
  */
-@Component("kratosDataSourceHolder")
-public class KratosDataSourceHolder implements DataSourceHolder {
-	private static final ThreadLocal<Integer> holder;
+@Component
+public class Message {
+	private int message_id;
+	private long userinfo_test_id;
+	private String message;
 
-	static {
-		holder = new ThreadLocal<Integer>();
+	public int getMessage_id() {
+		return message_id;
 	}
 
-	@Override
-	public void setIndex(int index) {
-		holder.set(index);
+	public void setMessage_id(int message_id) {
+		this.message_id = message_id;
 	}
 
-	@Override
-	public int getIndex() {
-		return holder.get();
+	public long getUserinfo_test_id() {
+		return userinfo_test_id;
+	}
+
+	public void setUserinfo_test_id(long userinfo_test_id) {
+		this.userinfo_test_id = userinfo_test_id;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
 	}
 }

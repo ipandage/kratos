@@ -18,7 +18,7 @@ package com.gxl.kratos.test;
 import org.springframework.stereotype.Component;
 
 /**
- * 对应数据库表[userinfo]
+ * 对应数据库表[userinfo_test]
  *
  * @author JohnGao
  */

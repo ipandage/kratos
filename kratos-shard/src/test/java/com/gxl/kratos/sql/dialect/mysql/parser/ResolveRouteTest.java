@@ -35,22 +35,22 @@ public class ResolveRouteTest {
 	}
 
 	public @Test void getRoutebySelect() {
-		final String SQL = "SELECT * FROM userinfo WHERE uid = 100000000101 and name=?";
+		final String SQL = "SELECT * FROM userinfo_test WHERE uid = 100000000101 and name=?";
 		Assert.assertEquals(100000000101L, ResolveRoute.getRoute(SQL, rules));
 	}
 
 	public @Test void getRoutebyInsert() {
-		final String SQL = "INSERT INTO userinfo(uid,name) VALUES(100000000101,?)";
+		final String SQL = "INSERT INTO userinfo_test(uid,name) VALUES(100000000101,?)";
 		Assert.assertEquals(100000000101L, ResolveRoute.getRoute(SQL, rules));
 	}
 
 	public @Test void getRoutebyUpdate() {
-		final String SQL = "UPDATE userinfo SET sex = ? WHERE uid=100000000101 AND email=?";
+		final String SQL = "UPDATE userinfo_test SET sex = ? WHERE uid=100000000101 AND email=?";
 		Assert.assertEquals(100000000101L, ResolveRoute.getRoute(SQL, rules));
 	}
 
 	public @Test void getRoutebyDelete() {
-		final String SQL = "DELETE FROM userinfo WHERE uid=100000000101 AND name=?";
+		final String SQL = "DELETE FROM userinfo_test WHERE uid=100000000101 AND name=?";
 		Assert.assertEquals(100000000101L, ResolveRoute.getRoute(SQL, rules));
 	}
 }

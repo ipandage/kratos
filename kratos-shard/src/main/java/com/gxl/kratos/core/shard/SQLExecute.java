@@ -37,7 +37,7 @@ public class SQLExecute {
 	private KratosJdbcTemplate kJdbcTemplate;
 	@Resource
 	private SetDataSource setDataSource;
-	@Resource
+	@Resource(name = "dbRouteFacade")
 	private Route route;
 
 	/**

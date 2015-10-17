@@ -35,7 +35,7 @@ import com.gxl.kratos.sql.parser.SQLStatementParser;
  */
 public class SqlParserTest {
 	public @Test void parserbySelect() throws Exception {
-		final String SQL = "SELECT * FROM userinfo WHERE uid = 10000 AND name = gaoxianglong";
+		final String SQL = "SELECT * FROM userinfo_test WHERE uid = 10000 AND name = gaoxianglong";
 		/* 生成AST抽象语法树 */
 		SQLStatementParser parser = new MySqlStatementParser(SQL);
 		List<SQLStatement> statements = parser.parseStatementList();
@@ -55,7 +55,7 @@ public class SqlParserTest {
 	}
 
 	public @Test void parserbyInsert() throws Exception {
-		String sql = "INSERT INTO userinfo(uid,name) VALUES(10000,gaoxianglong)";
+		String sql = "INSERT INTO userinfo_test(uid,name) VALUES(10000,gaoxianglong)";
 		/* 生成AST抽象语法树 */
 		SQLStatementParser parser = new MySqlStatementParser(sql);
 		List<SQLStatement> statements = parser.parseStatementList();
@@ -71,7 +71,7 @@ public class SqlParserTest {
 	}
 
 	public @Test void parserbyUpdate() throws Exception {
-		String sql = "UPDATE userinfo SET sex = ? WHERE uid=10000 AND name=gaoxianglong";
+		String sql = "UPDATE userinfo_test SET sex = ? WHERE uid=10000 AND name=gaoxianglong";
 		/* 生成AST抽象语法树 */
 		SQLStatementParser parser = new MySqlStatementParser(sql);
 		List<SQLStatement> statements = parser.parseStatementList();
@@ -89,7 +89,7 @@ public class SqlParserTest {
 	}
 
 	public @Test void parserbyDelete() throws Exception {
-		String sql = "DELETE FROM userinfo WHERE uid=10000 AND name=gaoxianglong";
+		String sql = "DELETE FROM userinfo_test WHERE uid=10000 AND name=gaoxianglong";
 		/* 生成AST抽象语法树 */
 		SQLStatementParser parser = new MySqlStatementParser(sql);
 		List<SQLStatement> statements = parser.parseStatementList();

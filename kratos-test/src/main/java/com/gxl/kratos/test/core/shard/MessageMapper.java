@@ -13,38 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.gxl.kratos.core.shard;
+package com.gxl.kratos.test.core.shard;
 
-import javax.annotation.Resource;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
-import com.gxl.kratos.core.config.DataSourceHolder;
 
 /**
- * 设置数据源
+ * Message实体映射类
  * 
  * @author gaoxianglong
  */
 @Component
-public class SetDataSource {
-	private Logger logger = LoggerFactory.getLogger(SetDataSource.class);
-
-	@Resource(name = "kratosDataSourceHolder")
-	private DataSourceHolder dataSourceHolder;
-
-	/**
-	 * 切换数据源路由索引
-	 * 
-	 * @author gaoxianglong
-	 * 
-	 * @param index
-	 *            数据库索引
-	 * 
-	 * @return void
-	 */
-	protected void setIndex(int index) {
-		dataSourceHolder.setIndex(index);
-		logger.info("kratos成功切换数据源,当前所持有的数据源索引为-->" + index);
+public class MessageMapper implements RowMapper<Message> {
+	@Override
+	public Message mapRow(ResultSet rs, int rowNum) throws SQLException {
+		Message msg = new Message();
+		msg.setMessage(rs.getString("message"));
+		return msg;
 	}
 }

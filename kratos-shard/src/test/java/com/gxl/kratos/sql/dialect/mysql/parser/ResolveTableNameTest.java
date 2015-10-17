@@ -21,22 +21,22 @@ import junit.framework.Assert;
 
 public class ResolveTableNameTest {
 	public @Test void getTabNamebySelect() {
-		final String SQL = "SELECT * FROM userinfo WHERE uid = 10000 AND name = gaoxianglong";
-		Assert.assertEquals("userinfo", ResolveTableName.getTabName(SQL));
+		final String SQL = "SELECT * FROM userinfo_test WHERE uid = 10000 AND name = gaoxianglong";
+		Assert.assertEquals("userinfo_test", ResolveTableName.getTabName(SQL));
 	}
 
 	public @Test void getTabNamebyInsert() {
-		final String SQL = "INSERT INTO userinfo(uid,name) VALUES(10000,gaoxianglong)";
-		Assert.assertEquals("userinfo", ResolveTableName.getTabName(SQL));
+		final String SQL = "INSERT INTO userinfo_test(uid,name) VALUES(10000,gaoxianglong)";
+		Assert.assertEquals("userinfo_test", ResolveTableName.getTabName(SQL));
 	}
 
 	public @Test void getTabNamebyUpdate() {
-		final String SQL = "UPDATE userinfo SET sex = ? WHERE uid=10000 AND name=gaoxianglong";
-		Assert.assertEquals("userinfo", ResolveTableName.getTabName(SQL));
+		final String SQL = "UPDATE userinfo_test SET sex = ? WHERE uid=10000 AND name=gaoxianglong";
+		Assert.assertEquals("userinfo_test", ResolveTableName.getTabName(SQL));
 	}
 
 	public @Test void getTabNamebyDelete() {
-		final String SQL = "DELETE FROM userinfo WHERE uid=10000 AND name=gaoxianglong";
-		Assert.assertEquals("userinfo", ResolveTableName.getTabName(SQL));
+		final String SQL = "DELETE FROM userinfo_test WHERE uid=10000 AND name=gaoxianglong";
+		Assert.assertEquals("userinfo_test", ResolveTableName.getTabName(SQL));
 	}
 }

@@ -32,7 +32,7 @@ import com.gxl.kratos.util.ResolveTableName;
  * 
  * @author gaoxianglong
  */
-@Component
+@Component("dbRouteFacade")
 public class DbRouteFacade implements Route {
 	@Resource
 	private KratosJdbcTemplate kJdbcTemplate;
