@@ -15,13 +15,13 @@
  */
 package com.gxl.kratos.util.sequence;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.concurrent.ConcurrentHashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-
 import com.gxl.kratos.exception.SequenceIdException;
+
 /**
  * 生成SequenceId接口
  * 
@@ -134,15 +134,18 @@ public class CreateSequenceIdService {
 					}
 				} catch (SQLException e) {
 					try {
-						CreateSequenceIdDaoImpl.conn.rollback();
+						if (null != CreateSequenceIdDaoImpl.conn && !CreateSequenceIdDaoImpl.conn.isClosed()) {
+							CreateSequenceIdDaoImpl.conn.rollback();
+						}
 					} catch (SQLException e1) {
 						log.error("生成SequenceId回滚数据失败", e1);
 					}
-					e.printStackTrace();
 					throw new SequenceIdException("生成sequenceId失败...");
 				} finally {
 					try {
-						CreateSequenceIdDaoImpl.conn.close();
+						if (null != CreateSequenceIdDaoImpl.conn && !CreateSequenceIdDaoImpl.conn.isClosed()) {
+							CreateSequenceIdDaoImpl.conn.close();
+						}
 					} catch (SQLException e) {
 						log.error("生成SequenceId关闭连接失败", e);
 					}

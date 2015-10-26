@@ -17,10 +17,8 @@ package com.gxl.kratos.test.util.sequence;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.junit.BeforeClass;
 import org.junit.Test;
-
 import com.gxl.kratos.util.sequence.DbConnectionManager;
 import com.gxl.kratos.util.sequence.SequenceIDManger;
 
@@ -30,8 +28,8 @@ import com.gxl.kratos.util.sequence.SequenceIDManger;
  * @author gaoxianglong
  */
 public class SequenceIdTest {
-	final static String NAME = "root";
-	final static String PWD = "123456";
+	final static String NAME = "";
+	final static String PWD = "";
 	final static String URL = "jdbc:mysql://ip:3306/id";
 	final static String DRIVER = "com.mysql.jdbc.Driver";
 	static boolean c_result1 = false;
